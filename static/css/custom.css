@@ -8,8 +8,6 @@
 @import url("fonts.css");
 @import url("footer.css");
 
-
-
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -28,6 +26,7 @@ body {
     background-image: url(../../static/img/circle_blur_top-min.png);
     background-position: 100% 0%;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* You can override the default Infima variables here. */
@@ -45,14 +44,14 @@ body {
   --ifm-code-font-size: 95%;
   --ifm-footer-padding-vertical: 40px;
   --ifm-container-width: unset;
-  --ifm-container-width-xl: 1180px;
+  --ifm-container-width-xl: 1440px;
   --ifm-heading-font-family: 'Nunito', sans-serif;
   --ifm-heading-font-weight: 600;
   --ifm-heading-line-height: normal;
   --border-color-hover:#4bb7e4;
   --ifm-font-color-base:#06182c;
-  --ifm-navbar-height:102px !important;
-  --ifm-navbar-background-color: transparent;
+  --ifm-navbar-height:72px !important;
+  --ifm-navbar-background-color: #fff;
   --ifm-navbar-search-input-background-color: #fff;
   --ifm-navbar-search-input-icon: url("../../static/img/search.svg");
   --search-local-highlight-color: #1483a8;
@@ -74,7 +73,7 @@ body {
   --border-color-hover:#1483a8;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-background-color: #06182c !important;
-  --ifm-navbar-background-color: transparent;
+  --ifm-navbar-background-color: #06182c;
   --prism-background-color:#273238 !important;
   --ifm-font-color-base:#fcfcfc;
   --ifm-navbar-search-input-background-color: #06182c;
@@ -86,20 +85,27 @@ body {
   .navbar__inner, .main-wrapper {width:1440px; max-width:1440px; margin:0 auto; padding-left:32px;padding-right:32px;}
 }
 
-nav {box-shadow: none !important;}
+nav.navbar {
+  box-shadow: none !important;  
+  background-image: url(../../static/img/circle_blur_top-min.png);
+  background-position: 100% 0%;
+  background-repeat: no-repeat;
+}
+
 .navbar__inner {max-width:1440px; margin:auto; height:80px;}
 .navbar__item {
   font-family:'Nunito', sans-serif;
   font-weight:700;
 }
 
-nav.menu ul {margin-top:40px; position:fixed;}
+nav.menu ul {position:sticky;}
 
 [class^="iconExternalLink"] {display:none;}
 
-aside {border-right:none;}
-
-aside [class*="search-wrapper"] { min-width:200px;position:fixed;margin-top: 120px; margin-left: 20px}
+@media (min-width: 997px) {
+.docSidebarContainer_YfHR, aside.[class^="docSidebarContainer"], aside, [class^="docSidebarContainer"] {border-right:0 #06182c !important;}
+}
+aside [class*="search-wrapper"] { min-width:200px;position: sticky; margin-top: 50px; width: 72% !important;}
 
 h1 {font-size:72px; font-weight:700;}
 h2 {font-size:32px;}

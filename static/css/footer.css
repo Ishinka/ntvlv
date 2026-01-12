@@ -1,21 +1,20 @@
  .container.foot {
-    background-image: url(../../static/img/logomark_footer.svg);
+    background-image: url(../../static/img/logomark_footer-bk.svg);
     background-position: 93% 100%;
     background-size: auto;
     background-repeat: no-repeat;
     }
     footer {color:#06182c;}
     footer a {color:#06182c;}
-  [data-theme='dark'] footer {color:#fff;}
-  [data-theme='dark'] footer a {color:#fff;}
-
+    [data-theme='dark'] footer {color:#fff;}
+    [data-theme='dark'] footer a {color:#fff;}
+    [data-theme='dark'] .container.foot {
+    background-image: url(../../static/img/logomark_footer.svg);}
     .container {
         z-index: 10;
         max-width: 1440px;
         margin-right: auto;
         margin-left: auto;
-        padding-right: 5%;
-        padding-left: 5%;
     }
     .ftr-box {
     display: -webkit-box;
@@ -143,8 +142,11 @@ a {
     padding-top: 5px;
 }
 
+ [data-theme='dark'] .ftr-logo {
+    content: url('/img/logo.svg');
+}
 @media (max-width:776px) {
-      .ftr-box {  flex-wrap: wrap;}
+      .ftr-box {flex-wrap: wrap;}
       .ftr-left {width:100%; margin-bottom:20px}
       .ftr-abt-p {width:100%;}
       .ftr-center, .ftr-right {width:50%}
