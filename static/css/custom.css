@@ -362,6 +362,9 @@ footer a:hover {text-decoration:none;}
 
 .navbar__inner [class^="navbarSearchContainer"] {display:none;}
 
+/*plugin-image-zoom level fix*/
+.medium-zoom-overlay { opacity: .92 !important; z-index:200; }
+.medium-zoom-image--opened { z-index:201; }
 @media (max-width:996px) {
 .homeContainer h1 {font-size:37px; }
 .navbar__inner [class^="navbarSearchContainer"] {display:block;}
