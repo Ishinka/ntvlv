@@ -56,6 +56,9 @@ body {
   --ifm-navbar-search-input-icon: url("../../static/img/search.svg");
   --search-local-highlight-color: #1483a8;
   /*--ifm-footer-background-color:#cecece;*/
+  --ifm-card-background-color:#fafafa !important;
+  --ifm-card-border-radius: 10px;
+  --prism-background-color: #fafafa;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -74,13 +77,14 @@ body {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-background-color: #06182c !important;
   --ifm-navbar-background-color: #06182c;
-  --prism-background-color:#273238 !important;
+  --prism-background-color:#0a2540 !important;
   --ifm-font-color-base:#fcfcfc;
   --ifm-navbar-search-input-background-color: #06182c;
   --search-local-highlight-color: #2e5266;
-
-
+  --ifm-card-background-color:#0a2540;
+  --ifm-color-info-contrast-background: #2e5266;
 }
+
 @media (min-width:1440px) {
   .navbar__inner, .main-wrapper {width:1440px; max-width:1440px; margin:0 auto; padding-left:32px;padding-right:32px;}
 }
@@ -107,13 +111,14 @@ nav.menu ul {position:sticky;}
 }
 aside [class*="search-wrapper"] { min-width:200px;position: sticky; margin-top: 50px; width: 72% !important;}
 
-h1 {font-size:72px; font-weight:700;}
+h1 {font-size:42px; font-weight:700;}
 h2 {font-size:32px;}
 h3 {font-size:24px;}
 h4 {font-size:20px;}
 
 .breadcrumbs__link {background-color:transparent !important; text-transform: uppercase; font-weight:600;}
 /* custom code blocks background */
+pre code {background-color: #fafafa;}
 [data-theme='dark'] pre code {background-color: #0a2540;}
 [data-theme='dark'] [class^="codeBlockTitle"] {background-color: #2e5266 !important;}
 
@@ -123,10 +128,6 @@ h4 {font-size:20px;}
 /*global links in docs */
 p a {color:var(--ifm-color-primary);text-decoration:underline !important;}
 p a:hover {color:var(--ifm-color-primary-darkest);}
-
-/* category cards */
-a.card:hover {border-color:var(--border-color-hover);}
-a.card:hover h2 {color:var(--ifm-color-primary);}
 
 /* Search */
 .navbar__search-input {border-radius:5px;border:1px solid #e7e7e7;}
@@ -257,41 +258,29 @@ a.table-of-contents__link:hover { color: #292929;}
   border-left: 1px solid var(--ifm-color-secondary);
 }
 
-/* link card section in documents */
-.git-lnk-card, .pdf-lnk-card {
-  padding:20px 20px 0px 70px;
-  margin-bottom:30px;
-  border-radius:5px;
-  display:flex;
-  border: 1px solid #ddd;
+/* category cards */
+a.card:hover {border-color:var(--border-color-hover);}
+a.card:hover h2 {color:var(--ifm-color-primary);}
+
+[class^="docCardListItem"] {
+    padding: 1px !important;
+    border: none !important;
+    margin:20px;
+    border-radius: 10px !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#1483a8), to(rgba(156, 215, 247, 0.1))) !important;
+    background-image: linear-gradient(180deg, #1483a8, rgba(156, 215, 247, 0.1)) !important;
+    -webkit-transition: all 400ms ease;
+    transition: all 400ms ease;
 }
 
-.lnk-card {
-  padding:20px;
-  border-radius:5px;
-  display:block;
-  border: 1px solid #ddd;
-  width:280px;
-  margin:20px;
-  background-color:rgba(242,242,242,.8);
+.card {
+    border-radius: 10px !important;
+    border: none !important;
 }
 
-[data-theme='dark'] .lnk-card { background-color:#0a2540; }
-.lgo { display:flex; }
+.card h2 {font-size:21px;}
 
-
-.git-lnk-card:hover, .pdf-lnk-card:hover, .lnk-card:hover  { border-color:var(--ifm-color-primary); }
-[data-theme='dark'] .git-lnk-card, [data-theme='dark'] .pdf-lnk-card, [data-theme='dark'] .lnk-card {
-  border: 1px solid #383838;
-}
-[data-theme='dark'] .git-lnk-card:hover, [data-theme='dark'] .pdf-lnk-card:hover, [data-theme='dark'] .lnk-card:hover  {border-color:var(--ifm-color-primary);}
-.git-lnk-card {background: url('/img/GitHub-icon.png') left 20px center no-repeat; background-size:30px;}
-.pdf-lnk-card {background: url('/img/file-pdf-b.svg') left 20px center no-repeat; background-size:30px;}
-[data-theme='dark'] .pdf-lnk-card {background-image: url('/img/file-pdf-w.svg');}
-
-.git-lnk-card a,  {color: var(--ifm-font-color-base); text-decoration:none;}
-.git-lnk-card a, .pdf-lnk-card a  {color: var(--ifm-font-color-base); text-decoration:none !important;}
-.git-lnk-card:hover a, .pdf-lnk-card:hover a {color:var(--ifm-color-secondary)}
+[data-theme='dark'] .card:hover {background-color:rgba(10, 37, 64,.6) !important;}
 
 
 /* custom code highlight in dark mode */

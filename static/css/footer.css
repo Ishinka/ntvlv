@@ -5,7 +5,8 @@
     background-repeat: no-repeat;
     }
     footer {color:#06182c;}
-    footer a {color:#06182c;}
+    footer a {color:#06182c; background-color: transparent;
+}
     [data-theme='dark'] footer {color:#fff;}
     [data-theme='dark'] footer a {color:#fff;}
     [data-theme='dark'] .container.foot {
@@ -127,9 +128,6 @@ ease;
     font-weight: 800;
     text-align: center;
     text-decoration: none;
-}
-a {
-    background-color: transparent;
 }
 
 .ftr-li-p {
