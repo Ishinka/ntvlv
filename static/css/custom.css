@@ -48,7 +48,7 @@ body {
   --ifm-heading-font-family: 'Nunito', sans-serif;
   --ifm-heading-font-weight: 600;
   --ifm-heading-line-height: normal;
-  --border-color-hover:#4bb7e4;
+  --border-color-hover:#1483a8;
   --ifm-font-color-base:#06182c;
   --ifm-navbar-height:87px !important;
   --ifm-navbar-background-color: #fff;
@@ -73,7 +73,7 @@ body {
   --ifm-color-secondary:#4bb7e4;
   --docusaurus-details-decoration-color:#4bb7e4 !important;
   --ifm-footer-background-color:#06182c;
-  --border-color-hover:#1483a8;
+  --border-color-hover:#4bb7e4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-background-color: #06182c !important;
   --ifm-navbar-background-color: #06182c;
@@ -161,55 +161,10 @@ mark {color:var(--ifm-color-primary); background-color:transparent; font-weight:
 
 }
 
-/*.DocSearch-Button-Container {display:flex; padding-top:4px;}
-.DocSearch-Button-Placeholder {
-  padding-left: 5px;
-  padding-top: 1px;
-}
-
-.DocSearch-Button-Keys {
-    display: flex;
-    float: right;
-    position: relative;
-    margin-top: -20px;
-}
-
-.DocSearch-Button-Key { padding:2px; }*/
-
-/* Search Modal */
-
-/*[class^="searchModal"] {background-color:color(srgb 0.10502 0.11302 0.128549 / 0.16) !important;backdrop-filter: blur(40px);}
-[data-theme='dark'] [class^="searchModal"] {background-color:color(srgb 0.113961 0.126431 0.133725 / 0.72) !important;backdrop-filter: blur(40px);}
-[class^="searchModalContainer"] {
-    backdrop-filter: blur(0px);
-    background-color: transparent !important;
-    border: none !important;
-    border-radius: 8px;
-    box-shadow: none !important;
-    min-width:unset !important;
-    min-height:unset !important;
-}
-
-[class^="searchInputContainer"] {
-    background-color:#fff !important;
-    border-radius: 8px !important;
-    box-shadow: inset 0 0 0 1px #454849 !important;
-    height: 50px;
-    margin: 12px;
-}
-
-[data-theme='dark'] [class^="searchInputContainer"] {
-    background-color:#0a2540 !important;
-}
-
-[class^="searchInputContainer"] label {
-  color:#454849 !important;
-}*/
-
 /* Sidebar */
-ul[class*="sidebar"] a {font-size:14px;}
+ul[class*="sidebar"] a {font-size:16px;}
 ul[class*="sidebar"] li div {background-color:transparent;}
-li.cat-title > div a {font-size: 12px; text-transform: uppercase; color:var(--ifm-font-color-base);font-weight:600;}
+li.cat-title > div a {font-size: 14px; text-transform: uppercase; color:var(--ifm-font-color-base);font-weight:600;}
 li.cat-title > div > a:after {display:none;} 
 li.cat-title > div  {margin-top:20px;}
 li.cat-title > div button {display:none;}
@@ -226,11 +181,6 @@ li[class*="level-3"]:hover {border-color:var(--ifm-color-primary);}
 [class^="sidebarViewport"] {padding-bottom:30px; padding-top:42px;/* padding-top: 80px; used for the searchbar if present in the sidebar*/}
 [class^="sidebarViewport"] [class^="sidebar"] {padding-top:20px !important;}
 
-/*[class^="sidebarViewport"] [class^="searchBar"] [class^="dropdownMenu"] {width:unset !important;}
-aside .navbar__search [class^="dropdownMenu"] {left:0px !important;}
-aside .navbar__search-input {width:272px; height:42px;}*/
-
-/*aside .DocSearch {margin-left:20px;}*/
 
 /*make left border in TOC for active element*/
 .table-of-contents {font-size: 0.9rem;}
