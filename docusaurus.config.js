@@ -69,8 +69,26 @@ const config = {
         },
       }),
     ],
+    // Redocusaurus config
+    [
+      'redocusaurus',
+      {
+        specs: [
+          // You can also pass it an OpenAPI spec URL
+          {
+           // spec: 'https://redocly.github.io/redoc/openapi.yaml',
+            spec: './combined.yaml',
+            route: 'docs/api/',
+          },
+        ],
+        // Theme Options for modifying how redoc renders theme
+        theme: {
+          // Change with your site colors
+          primaryColor: '#1483a8',
+        },
+      },
+    ], 
   ],
-
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -102,12 +120,7 @@ const config = {
             position: 'left',
             label: 'Guides',
           },
-          {
-            type: 'docSidebar',
-            sidebarId: 'apiSidebar',
-            position: 'left',
-            label: 'NetValveAPI',
-          },
+          {to: '/docs/api', label: 'NetValve API', position: 'left'},
           {
             type: 'search',
             position: 'left',
@@ -164,7 +177,7 @@ const config = {
       //  copyright: `Copyright © ${new Date().getFullYear()} NetValve Inc. All Rights Reserved.`,
       },
       prism: {
-        additionalLanguages: ['php','java','python'],
+       // additionalLanguages: ['php','java','python','json'],
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },

@@ -1,0 +1,3150 @@
+openapi: 3.0.1
+info:
+    title: Netvalve Merchant Documentation
+    description: <strong> Version 2.15.5 </strong> </br> The Netvalve merchant documentation
+        provides information on the available APIs. For API authentication use either
+        Basic Auth credentials or an API key.
+    version: ''
+    x-logo:
+        url: ./logo.png
+servers:
+-   url: https://payment-api.uat.sandbox-netvalve.com
+    description: UAT / Integration URL
+-   url: https://api.netvalve.com
+    description: Production URL
+paths:
+    /sale:
+        post:
+            tags:
+            - Payment Service
+            summary: Sale
+            description: A sale transaction also known as a “Pay” transaction, is
+                a combination of an Authorization (to check the card has sufficient
+                funds and has not been reported lost or stolen) and a Capture, meaning
+                the funds are taken from the cardholder immediately. It is the most
+                common form of card transaction
+            operationId: saleOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/BasicInputFieldsDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /refund:
+        post:
+            tags:
+            - Payment Service
+            summary: Refund
+            description: A Refund transaction is the process of returning the funds
+                of a previously settled transaction. A refund amount appears as a
+                credit on the card holder’s statement.
+            operationId: refundOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RefundInputFieldsDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /rebill:
+        post:
+            tags:
+            - Payment Service
+            summary: Rebill
+            description: A Rebill transaction is for merchants that are offering subscriptions
+                for their services require a way of billing the same amount on a regular
+                basis.
+            operationId: rebillOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RebillInputFieldsDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /createToken:
+        post:
+            tags:
+            - Payment Service
+            summary: Create token
+            description: The process of creating gateway token
+            operationId: createTokenizedCard
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/TokenizedCardInputDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /capture:
+        post:
+            tags:
+            - Payment Service
+            summary: Capture
+            description: A Capture transaction is a process that flags an already
+                authorized transaction to be settled in the next settlement period.
+            operationId: captureOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CaptureInputFieldsDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /cancel:
+        post:
+            tags:
+            - Payment Service
+            summary: Cancel
+            description: Cancel operation can be done for successfully authorized
+                transactions only. If a transaction is authorized then merchant can
+                either capture or cancel the transaction. In case of cancel on-hold
+                amount will be returned to customer card. The default period of on-hold
+                varies for each card issuers normally it is around 5-30 days.
+            operationId: cancelOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CancelInputFieldsDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /authorize:
+        post:
+            tags:
+            - Payment Service
+            summary: Authorize
+            description: The process of checking that the card being used in a transaction
+                contains sufficient funds to cover the amount of the transaction
+            operationId: authorizeOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/BasicInputFieldsDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /3ds/v2/initialization:
+        post:
+            tags:
+            - Three DS
+            summary: 3DS Initialization V2
+            description: This endpoint allows merchant to initiate 3DS transaction
+            operationId: initAndAuthOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ThreeDSInitAndAuthInputDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /3ds/result:
+        post:
+            tags:
+            - Three DS
+            summary: 3DS Result
+            description: This endpoint allows merchant to retrieve 3DS result
+            operationId: resultOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ThreeDSResultInputDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /3ds/initialization:
+        post:
+            tags:
+            - Three DS
+            summary: 3DS Initialization
+            description: This endpoint allows merchant to initiate 3DS transaction
+            operationId: initializationOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ThreeDSInitInputDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /3ds/authentication:
+        post:
+            tags:
+            - Three DS
+            summary: 3DS Authentication
+            description: This endpoint allows merchant to Authenticate 3DS transaction
+            operationId: authenticationOperation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ThreeDSAuthInputDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /transaction:
+        get:
+            tags:
+            - Payment Service
+            summary: Get Transaction
+            description: This api allows merchant to retrieve an transaction by Id.
+            operationId: getTransactionById
+            parameters:
+            -   name: id
+                in: query
+                required: true
+                schema:
+                    type: integer
+                    format: int64
+            -   name: collectBillingInfo
+                in: query
+                required: false
+                schema:
+                    type: boolean
+            -   name: collectShippingInfo
+                in: query
+                required: false
+                schema:
+                    type: boolean
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/TransactionOutputDTO'
+    /orders:
+        get:
+            tags:
+            - Payment Service
+            summary: Get All Orders
+            description: This api allows merchant to retrieve an all orders by filters
+                provided with pagination.
+            operationId: exportOrders
+            parameters:
+            -   name: filters
+                in: query
+                required: true
+                schema:
+                    $ref: '#/components/schemas/SearchFilterDTO'
+            -   name: page
+                in: query
+                required: true
+                schema:
+                    type: integer
+                    format: int32
+            -   name: pageSize
+                in: query
+                required: true
+                schema:
+                    type: integer
+                    format: int32
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PageResultOrderDTO'
+    /order:
+        get:
+            tags:
+            - Payment Service
+            summary: Get Order
+            description: This api allows merchant to retrieve Order by id,clientOrderId,netvalveMidId,transactionId.
+            operationId: getOrderById
+            parameters:
+            -   name: id
+                in: query
+                required: false
+                schema:
+                    type: integer
+                    format: int64
+            -   name: clientOrderId
+                in: query
+                required: false
+                schema:
+                    type: string
+            -   name: netvalveMidId
+                in: query
+                required: false
+                schema:
+                    type: string
+            -   name: transactionId
+                in: query
+                required: false
+                schema:
+                    type: integer
+                    format: int64
+            -   name: collectBillingInfo
+                in: query
+                required: false
+                schema:
+                    type: boolean
+            -   name: collectShippingInfo
+                in: query
+                required: false
+                schema:
+                    type: boolean
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/OrderOutputDTO'
+    /inquiry:
+        get:
+            tags:
+            - Payment Service
+            summary: Query Transaction Status
+            description: Retrieve the status of a previously submitted transaction
+            operationId: inquiry
+            parameters:
+            -   name: transactionId
+                in: query
+                required: true
+                schema:
+                    type: integer
+                    format: int64
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+    /export:
+        get:
+            tags:
+            - Payment Service
+            summary: Get All Transactions
+            description: This api allows merchant to retrieve an all transactions
+                by given filters.
+            operationId: exportTransactions
+            parameters:
+            -   name: filters
+                in: query
+                required: true
+                schema:
+                    $ref: '#/components/schemas/SearchFilterDTO'
+            -   name: page
+                in: query
+                required: true
+                schema:
+                    type: integer
+                    format: int32
+            -   name: pageSize
+                in: query
+                required: true
+                schema:
+                    type: integer
+                    format: int32
+            -   name: collectBillingInfo
+                in: query
+                required: false
+                schema:
+                    type: boolean
+            -   name: collectShippingInfo
+                in: query
+                required: false
+                schema:
+                    type: boolean
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/PageResultTransactionDTO'
+    /hpp/order:
+        post:
+            tags:
+            - Hosted Payment Page
+            summary: Create Order
+            description: This api allows merchants to create order to initiate transaction
+            operationId: createOrder
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/HppOrderInputFieldsDTO'
+                required: true
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        '*/*':
+                            schema:
+                                $ref: '#/components/schemas/TransactionResponseDTO'
+        servers:
+        -   url: https://hpp-api.uat.sandbox-netvalve.com
+            description: UAT / Integration URL
+        -   url: https://hpp-api.netvalve.com
+            description: Production URL
+components:
+    schemas:
+        NetworkTokenStateChangeNotificationDTO:
+            type: object
+            properties:
+                messageId:
+                    type: string
+                conversationId:
+                    type: string
+                tokenRequestorId:
+                    type: string
+                tokenReferenceId:
+                    type: string
+                requestReason:
+                    type: string
+                requestReasonCode:
+                    type: string
+                previousTokenState:
+                    type: string
+                currentTokenState:
+                    type: string
+                tokenTimestamp:
+                    type: string
+        TokenStateChangeDTO:
+            type: object
+            properties:
+                token:
+                    type: string
+                referenceNumber:
+                    type: string
+                success:
+                    type: string
+                error:
+                    type: string
+                networkTokenStateChangeNotification:
+                    $ref: '#/components/schemas/NetworkTokenStateChangeNotificationDTO'
+        TokenStateChangeResponseDTO:
+            type: object
+            properties:
+                traceId:
+                    type: string
+                responseTimestamp:
+                    type: string
+                    format: date-time
+                status:
+                    type: string
+                    enum:
+                    - ACTIVE
+                    - INACTIVE
+                    - PENDING
+                    - CANCELLED
+                    - DISABLE
+                    - USED
+                    - SUCCESS
+                    - FAILED
+                    - SUSPEND
+                    - RETRY
+                    - ON_HOLD
+        AdditionalDataDTO:
+            type: object
+            properties:
+                industryCode:
+                    type: string
+                isCardAuthentication:
+                    type: boolean
+                isOfflineTransaction:
+                    type: boolean
+                requestTransactionType:
+                    type: string
+                    enum:
+                    - IN_APP
+                    - ECOMMERCE
+                    - RECURRING
+                    - DIRECT_MARKETING
+                    - INSTALLMENT
+                isLevel2Transaction:
+                    type: boolean
+                taxAmount:
+                    type: number
+                    format: double
+                settlementAmount:
+                    type: number
+                isDirectMarketing:
+                    type: boolean
+                recurringScheduleType:
+                    type: string
+                partialAuthorizationIndicator:
+                    type: string
+                directMarketingTxnMode:
+                    type: string
+                cardUsage:
+                    type: string
+                recipientDob:
+                    type: string
+                recipientAccountNo:
+                    type: string
+                recipientPostalCode:
+                    type: string
+                recipientSurname:
+                    type: string
+                scaExemptionIndicator:
+                    type: string
+                credentialOnFileTransaction:
+                    type: string
+                recurrenceMode:
+                    type: string
+        ApplePaySSLDTO:
+            type: object
+            properties:
+                paymentData:
+                    $ref: '#/components/schemas/ApplePaymentDataDTO'
+                paymentMethod:
+                    $ref: '#/components/schemas/ApplePaymentMethodDTO'
+                transactionIdentifier:
+                    type: string
+        ApplePaymentDataDTO:
+            required:
+            - data
+            - header
+            - version
+            - data
+            - header
+            - version
+            type: object
+            properties:
+                version:
+                    type: string
+                signature:
+                    type: string
+                data:
+                    type: string
+                header:
+                    $ref: '#/components/schemas/HeaderDTO'
+        ApplePaymentMethodDTO:
+            type: object
+            properties:
+                displayName:
+                    type: string
+                network:
+                    type: string
+                type:
+                    type: string
+        BasicInputFieldsDTO:
+            required:
+            - amount
+            - currency
+            - paymentType
+            type: object
+            properties:
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                amount:
+                    type: number
+                currency:
+                    type: string
+                orderDesc:
+                    type: string
+                clientOrderId:
+                    maxLength: 100
+                    minLength: 0
+                    type: string
+                cardSecurityCode:
+                    type: string
+                cardHolderName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                cardExpireMonth:
+                    pattern: ^(0[1-9]|1[0-2])$
+                    type: string
+                cardExpireYear:
+                    maxLength: 4
+                    minLength: 4
+                    type: string
+                customerName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerFirstName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerLastName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                customerCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                customerCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+                customerPhone:
+                    maxLength: 20
+                    minLength: 0
+                    type: string
+                customerEmail:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerIp:
+                    type: string
+                paymentType:
+                    type: string
+                    enum:
+                    - CARD
+                    - WALLET
+                    - TOKEN
+                walletType:
+                    type: string
+                    enum:
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                applePaySSL:
+                    $ref: '#/components/schemas/ApplePaySSLDTO'
+                googlePaySSL:
+                    $ref: '#/components/schemas/GooglePaySSLDTO'
+                samsungPaySSL:
+                    $ref: '#/components/schemas/SamsungPaySSLDTO'
+                tokenizedDTO:
+                    $ref: '#/components/schemas/TokenizedDTO'
+                additionalData:
+                    $ref: '#/components/schemas/AdditionalDataDTO'
+                additionalParameters:
+                    type: object
+                    additionalProperties:
+                        type: string
+                siteId:
+                    type: string
+                paymentToken:
+                    type: string
+                descriptor:
+                    pattern: ^.{0,50}$
+                    type: string
+                cardNumber:
+                    maxLength: 40
+                    minLength: 0
+                    type: string
+                3DS:
+                    $ref: '#/components/schemas/ThreeDomainsSecureDTO'
+        GoogleIntermediateSigningKeyDTO:
+            type: object
+            properties:
+                signedKey:
+                    type: string
+                signatures:
+                    type: array
+                    items:
+                        type: string
+        GooglePaySSLDTO:
+            type: object
+            properties:
+                protocolVersion:
+                    type: string
+                signature:
+                    type: string
+                intermediateSigningKey:
+                    $ref: '#/components/schemas/GoogleIntermediateSigningKeyDTO'
+                signedMessage:
+                    type: string
+        HeaderDTO:
+            required:
+            - ephemeralPublicKey
+            - publicKeyHash
+            - transactionId
+            - ephemeralPublicKey
+            - publicKeyHash
+            - transactionId
+            type: object
+            properties:
+                transactionId:
+                    type: string
+                publicKeyHash:
+                    type: string
+                ephemeralPublicKey:
+                    type: string
+        Samsung3DSDTO:
+            type: object
+            properties:
+                data:
+                    type: string
+                type:
+                    type: string
+                version:
+                    type: string
+        SamsungDetailsDTO:
+            type: object
+            properties:
+                method:
+                    type: string
+                paymentCredential:
+                    $ref: '#/components/schemas/SamsungPaymentCredentialDTO'
+                paymentInfo:
+                    $ref: '#/components/schemas/SamsungPaymentInfoDTO'
+        SamsungPaySSLDTO:
+            type: object
+            properties:
+                requestId:
+                    type: string
+                methodName:
+                    type: string
+                details:
+                    $ref: '#/components/schemas/SamsungDetailsDTO'
+                shippingAddress:
+                    type: string
+                shippingOption:
+                    type: string
+                payerName:
+                    type: string
+                payerEmail:
+                    type: string
+                payerPhone:
+                    type: string
+        SamsungPaymentCredentialDTO:
+            type: object
+            properties:
+                3DS:
+                    $ref: '#/components/schemas/Samsung3DSDTO'
+                recurring_payment:
+                    type: boolean
+        SamsungPaymentInfoDTO:
+            type: object
+            properties:
+                cardBrand:
+                    type: string
+                orderNumber:
+                    type: string
+                card_last4digits:
+                    type: string
+        ThreeDomainsSecureDTO:
+            type: object
+            properties:
+                cavv:
+                    type: string
+                dsTransactionId:
+                    type: string
+                xid:
+                    type: string
+                eci:
+                    type: string
+                status:
+                    type: string
+                version:
+                    type: string
+                masterCardDSRP:
+                    type: string
+                cavvAlgorithm:
+                    type: string
+                provider:
+                    type: string
+                verifyTransactionId:
+                    type: string
+                isFrictionLess:
+                    type: boolean
+        TokenizedDTO:
+            type: object
+            properties:
+                cardholderName:
+                    type: string
+                cardNumber:
+                    type: string
+                cardExpiryMonth:
+                    type: string
+                cardExpiryYear:
+                    type: string
+                cryptogramFormat:
+                    type: string
+                cryptogram:
+                    type: string
+                eciIndicator:
+                    type: string
+                transactionAmount:
+                    type: string
+                authMethod:
+                    type: string
+                paymentToken:
+                    type: string
+        ResultThreeDSTransactionResponseDTO:
+            type: object
+            properties:
+                traceID:
+                    type: string
+                responseTimestamp:
+                    type: string
+                    format: date-time
+                transID:
+                    type: string
+                referenceId:
+                    type: string
+                errorCode:
+                    type: string
+                errorMessage:
+                    type: string
+                threeDs2TransactionId:
+                    type: string
+                eci:
+                    type: string
+                cavv:
+                    type: string
+                challengeRequired:
+                    type: boolean
+                jwt:
+                    type: string
+                redirectUrl:
+                    type: string
+                status:
+                    type: string
+                    enum:
+                    - INITIALIZED
+                    - INITIALIZATION_FAILED
+                    - AUTHENTICATED
+                    - AUTHENTICATION_FAILED
+                    - DEVICE_DATA_COLLECTED
+                    - ACS_REQUIRED
+                    - ACS_COMPLETED
+                    - ACS_FAILED
+                    - COMPLETED
+                    - RESULT_FAILED
+                    - INITIALIZED
+                    - INITIALIZATION_FAILED
+                    - AUTHENTICATED
+                    - AUTHENTICATION_FAILED
+                    - DEVICE_DATA_COLLECTED
+                    - ACS_REQUIRED
+                    - ACS_COMPLETED
+                    - COMPLETED
+                    - RESULT_FAILED
+                threeDsVersion:
+                    type: string
+                providerRedirectUrl:
+                    type: string
+                merchantRedirectUrl:
+                    type: string
+                provider:
+                    type: string
+                providerTransactionId:
+                    type: string
+                netvalveCallBackUrl:
+                    type: string
+                authType:
+                    type: string
+        TokenExSuccessfulDTO:
+            type: object
+            properties:
+                tokenExSuccessful:
+                    type: boolean
+        TransactionResponseDTO:
+            type: object
+            properties:
+                traceID:
+                    type: string
+                responseTimestamp:
+                    type: string
+                    format: date-time
+                orderId:
+                    type: integer
+                    format: int64
+                transactionID:
+                    type: integer
+                    format: int64
+                responseCode:
+                    type: string
+                responseMessage:
+                    type: string
+                responseCodeType:
+                    type: string
+                bankResponseCode:
+                    type: string
+                bankResponseMessage:
+                    type: string
+                orderState:
+                    type: string
+                    enum:
+                    - CREATED
+                    - READY_TO_PAY
+                    - PENDING
+                    - PAID
+                    - DECLINED
+                    - EXPIRED
+                    - AWAIT_3DS
+                    - CREATED
+                    - READY_TO_PAY
+                    - PENDING
+                    - PAID
+                    - DECLINED
+                    - EXPIRED
+                    - AWAIT_3DS
+                redirectUrl:
+                    type: string
+                merchantName:
+                    type: string
+                clientId:
+                    type: integer
+                    format: int64
+                isRetryAllowed:
+                    type: boolean
+                threeDSProviderResponse:
+                    $ref: '#/components/schemas/ResultThreeDSTransactionResponseDTO'
+                paymentMethod:
+                    type: string
+                cardNumber:
+                    type: string
+                cardType:
+                    type: string
+                bankTransactionId:
+                    type: string
+                authCode:
+                    type: string
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                hppIFrameSupported:
+                    type: boolean
+                token:
+                    type: string
+                tokenExSuccessfulDTO:
+                    $ref: '#/components/schemas/TokenExSuccessfulDTO'
+                paymentAttempted:
+                    type: boolean
+                paymentChannelType:
+                    type: string
+                    enum:
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                    - ENABLE_DYNAMIC_DESCRIPTOR
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                cardExpiryMonth:
+                    type: string
+                cardExpiryYear:
+                    type: string
+                siteId:
+                    type: string
+                paymentToken:
+                    type: string
+                paymentTokenType:
+                    type: string
+                    enum:
+                    - GATEWAY_TOKEN
+                    - NETWORK_TOKEN
+                    - BANK_TOKEN
+                    - HPF
+                    - GATEWAY_TOKEN
+                    - NETWORK_TOKEN
+                    - BANK_TOKEN
+                    - HPF
+                transactionType:
+                    type: string
+                    enum:
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                walletInitializeSessionResponseDTO:
+                    $ref: '#/components/schemas/WalletInitializeSessionResponseDTO'
+        WalletInitializeSessionResponseDTO:
+            type: object
+            properties:
+                status:
+                    type: string
+                data:
+                    type: string
+        RefundInputFieldsDTO:
+            required:
+            - transactionID
+            type: object
+            properties:
+                transactionID:
+                    type: integer
+                    format: int64
+                amount:
+                    type: number
+                additionalData:
+                    $ref: '#/components/schemas/AdditionalDataDTO'
+        RebillInputFieldsDTO:
+            required:
+            - amount
+            - transactionID
+            type: object
+            properties:
+                amount:
+                    type: number
+                clientOrderId:
+                    maxLength: 100
+                    minLength: 0
+                    type: string
+                transactionID:
+                    type: integer
+                    format: int64
+                additionalData:
+                    $ref: '#/components/schemas/AdditionalDataDTO'
+        MultiValueMapStringString:
+            type: object
+            properties:
+                all:
+                    type: object
+                    additionalProperties:
+                        type: string
+                    writeOnly: true
+                empty:
+                    type: boolean
+            additionalProperties:
+                type: array
+                items:
+                    type: string
+        BankConfirmResponseDTO:
+            type: object
+            properties:
+                responseTimestamp:
+                    type: string
+                    format: date-time
+                responseCode:
+                    type: string
+                responseMessage:
+                    type: string
+                responseCodeType:
+                    type: string
+        CbAlertRequestDTO:
+            type: object
+            properties:
+                netvalveTransactionId:
+                    type: integer
+                    format: int64
+                cbAlertId:
+                    type: string
+                cbRawData:
+                    type: string
+                cbTransactionType:
+                    type: string
+                sender:
+                    type: string
+        CbAlertResponseDTO:
+            type: object
+            properties:
+                responseTimestamp:
+                    type: string
+                    format: date-time
+                chargebackTransactionID:
+                    type: integer
+                    format: int64
+                responseCode:
+                    type: string
+                responseMessage:
+                    type: string
+                responseCodeType:
+                    type: string
+        WalletInitializeSessionRequestDTO:
+            type: object
+            properties:
+                domainName:
+                    type: string
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                siteId:
+                    type: string
+                clientName:
+                    type: string
+                clientId:
+                    type: integer
+                    format: int64
+                walletType:
+                    type: string
+                    enum:
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                correlationId:
+                    type: string
+        HostedPaymentFieldsRequestDTO:
+            required:
+            - fieldName
+            - fieldValue
+            - paymentToken
+            type: object
+            properties:
+                paymentToken:
+                    type: string
+                fieldName:
+                    type: string
+                fieldValue:
+                    type: string
+        BillingAddressDTO:
+            type: object
+            properties:
+                billingAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                billingZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                billingCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                billingState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                billingCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+                addressIdentifier:
+                    type: string
+        ShippingAddressDTO:
+            type: object
+            properties:
+                shippingAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                shippingZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                shippingCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                shippingState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                shippingCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+                addressIdentifier:
+                    type: string
+        TokenizedCardInputDTO:
+            required:
+            - cardExpireMonth
+            - cardExpireYear
+            - cardNumber
+            type: object
+            properties:
+                amount:
+                    type: number
+                cardExpireMonth:
+                    pattern: ^(0[1-9]|1[0-2])$
+                    type: string
+                cardExpireYear:
+                    maxLength: 4
+                    minLength: 4
+                    type: string
+                cardSecurityCode:
+                    type: string
+                cardHolderName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                cardNumber:
+                    maxLength: 40
+                    minLength: 0
+                    type: string
+                currency:
+                    type: string
+                customerAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+                customerEmail:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerIp:
+                    type: string
+                customerName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerLastName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerPhone:
+                    maxLength: 20
+                    minLength: 0
+                    type: string
+                customerState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                customerZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                verify:
+                    type: boolean
+        CaptureInputFieldsDTO:
+            required:
+            - amount
+            - transactionID
+            type: object
+            properties:
+                amount:
+                    type: number
+                transactionID:
+                    type: integer
+                    format: int64
+                additionalData:
+                    $ref: '#/components/schemas/AdditionalDataDTO'
+                captureOptions:
+                    $ref: '#/components/schemas/CaptureOptionsDTO'
+        CaptureOptionsDTO:
+            type: object
+            properties:
+                finalCapture:
+                    type: boolean
+        CancelInputFieldsDTO:
+            required:
+            - transactionID
+            type: object
+            properties:
+                transactionID:
+                    type: integer
+                    format: int64
+                additionalData:
+                    $ref: '#/components/schemas/AdditionalDataDTO'
+        ThreeDSInitAndAuthInputDTO:
+            required:
+            - cardHolderName
+            - currency
+            type: object
+            properties:
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                cardNumber:
+                    maxLength: 40
+                    minLength: 0
+                    type: string
+                cardSecurityCode:
+                    type: string
+                cardExpireMonth:
+                    pattern: ^(0[1-9]|1[0-2])$
+                    type: string
+                cardExpireYear:
+                    maxLength: 4
+                    minLength: 4
+                    type: string
+                cardHolderName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerIp:
+                    type: string
+                customerEmail:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerPhone:
+                    maxLength: 20
+                    minLength: 0
+                    type: string
+                amount:
+                    type: number
+                currency:
+                    type: string
+                merchantRedirectUrl:
+                    type: string
+                siteId:
+                    type: string
+                userAgent:
+                    type: string
+                browserHeader:
+                    type: string
+                browserLanguage:
+                    type: string
+                browserJavaEnabled:
+                    type: boolean
+                browserColorDepth:
+                    type: integer
+                    format: int32
+                browserScreenHeight:
+                    type: integer
+                    format: int32
+                browserScreenWidth:
+                    type: integer
+                    format: int32
+                browserTimeZone:
+                    type: integer
+                    format: int32
+                challengeIndicator:
+                    type: string
+                paymentToken:
+                    type: string
+                descriptor:
+                    pattern: ^.{0,50}$
+                    type: string
+                customerAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                customerCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                customerCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+        ThreeDSResultInputDTO:
+            required:
+            - transID
+            type: object
+            properties:
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                transID:
+                    type: string
+                siteId:
+                    type: string
+        ThreeDSInitInputDTO:
+            required:
+            - cardHolderName
+            - currency
+            type: object
+            properties:
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                cardNumber:
+                    maxLength: 40
+                    minLength: 0
+                    type: string
+                cardSecurityCode:
+                    type: string
+                cardExpireMonth:
+                    pattern: ^(0[1-9]|1[0-2])$
+                    type: string
+                cardExpireYear:
+                    maxLength: 4
+                    minLength: 4
+                    type: string
+                cardHolderName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                amount:
+                    type: number
+                currency:
+                    type: string
+                merchantRedirectUrl:
+                    type: string
+                siteId:
+                    type: string
+                paymentToken:
+                    type: string
+                descriptor:
+                    pattern: ^.{0,50}$
+                    type: string
+                customerAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                customerCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                customerCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+        ThreeDSAuthInputDTO:
+            required:
+            - cardHolderName
+            - currency
+            - customerLastName
+            - customerName
+            - transID
+            type: object
+            properties:
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                transID:
+                    type: string
+                amount:
+                    type: number
+                currency:
+                    type: string
+                cardNumber:
+                    maxLength: 40
+                    minLength: 0
+                    type: string
+                cardExpireMonth:
+                    pattern: ^(0[1-9]|1[0-2])$
+                    type: string
+                cardExpireYear:
+                    maxLength: 4
+                    minLength: 4
+                    type: string
+                cardHolderName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                challengeIndicator:
+                    type: string
+                browserInfo:
+                    type: string
+                customerIp:
+                    type: string
+                customerEmail:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerLastName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                customerCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                customerCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+                customerPhone:
+                    maxLength: 20
+                    minLength: 0
+                    type: string
+                dfReferenceId:
+                    type: string
+                acsWindowSize:
+                    type: integer
+                    format: int32
+                siteId:
+                    type: string
+                paymentToken:
+                    type: string
+                descriptor:
+                    pattern: ^.{0,50}$
+                    type: string
+        AVSData:
+            type: object
+            properties:
+                code:
+                    type: string
+                description:
+                    type: string
+        CVVVerificationData:
+            type: object
+            properties:
+                code:
+                    type: string
+                description:
+                    type: string
+        ClientFraudRulesTransactionDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                transactionId:
+                    type: integer
+                    format: int64
+                clientId:
+                    type: integer
+                    format: int64
+                midId:
+                    type: integer
+                    format: int64
+                ruleCode:
+                    type: string
+                createdDatetime:
+                    type: string
+                    format: date-time
+        ResultChargebackDataDTO:
+            type: object
+            properties:
+                chargebackStatus:
+                    type: boolean
+                chargebackTransactionType:
+                    type: string
+                    enum:
+                    - ETHOCA
+                    - RDR
+                    - VERIFY
+                    - TC40
+                    - INFORM
+                    - FRAUD
+                    - CHARGEBACK
+                chargebackDate:
+                    type: string
+                    format: date-time
+                chargebackTransactionId:
+                    type: integer
+                    format: int64
+                cbAlertId:
+                    type: string
+                chargebackData:
+                    type: string
+        SmartRoutingDTO:
+            type: object
+            properties:
+                siteId:
+                    type: string
+                siteName:
+                    type: string
+                ruleId:
+                    type: string
+                primaryMid:
+                    type: integer
+                    format: int64
+                retryMid:
+                    type: integer
+                    format: int64
+                primaryMidId:
+                    type: string
+                primaryMidName:
+                    type: string
+                retryMidId:
+                    type: string
+                retryMidName:
+                    type: string
+                transactionProcessingMid:
+                    type: string
+                ruleDateTime:
+                    type: string
+                    format: date-time
+                clientId:
+                    type: integer
+                    format: int64
+                traceID:
+                    type: string
+        TokenDTO:
+            type: object
+            properties:
+                tokenizedCardId:
+                    type: integer
+                    format: int64
+                paymentToken:
+                    type: string
+                paymentTokenType:
+                    type: string
+        TransactionOutputDTO:
+            type: object
+            properties:
+                createdDate:
+                    type: string
+                    format: date-time
+                status:
+                    type: string
+                settlementStatus:
+                    type: string
+                issuer:
+                    type: string
+                cardType:
+                    type: string
+                issuerCountry:
+                    type: string
+                cardholderName:
+                    type: string
+                netvalveID:
+                    type: string
+                clientOrderId:
+                    type: string
+                customerEmail:
+                    type: string
+                cardNumber:
+                    type: string
+                brand:
+                    type: string
+                userID:
+                    type: integer
+                    format: int64
+                paymentMethod:
+                    type: string
+                paymentType:
+                    type: string
+                ipAddress:
+                    type: string
+                responseCode:
+                    type: string
+                accountName:
+                    type: string
+                descriptor:
+                    type: string
+                authCode:
+                    type: string
+                bankTransactionId:
+                    type: string
+                responseMessage:
+                    type: string
+                transactions:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TransactionShortOutputDTO'
+                amount:
+                    type: number
+                currency:
+                    type: string
+                avsData:
+                    $ref: '#/components/schemas/AVSData'
+                cvvVerificationData:
+                    $ref: '#/components/schemas/CVVVerificationData'
+                name:
+                    type: string
+                firstName:
+                    type: string
+                lastName:
+                    type: string
+                ip:
+                    type: string
+                email:
+                    type: string
+                address:
+                    type: string
+                phone:
+                    type: string
+                city:
+                    type: string
+                state:
+                    type: string
+                countryCode:
+                    type: string
+                zipCode:
+                    type: string
+                successUrl:
+                    type: string
+                cancelUrl:
+                    type: string
+                failedUrl:
+                    type: string
+                pendingUrl:
+                    type: string
+                threeDomainsSecureData:
+                    $ref: '#/components/schemas/ThreeDomainsSecureDTO'
+                smartRouting:
+                    $ref: '#/components/schemas/SmartRoutingDTO'
+                sourceOfTransaction:
+                    type: string
+                    enum:
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                    - ENABLE_DYNAMIC_DESCRIPTOR
+                billingDetails:
+                    $ref: '#/components/schemas/BillingAddressDTO'
+                shippingDetails:
+                    $ref: '#/components/schemas/ShippingAddressDTO'
+                transactionReferencedList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TransactionShortOutputDTO'
+                transactionType:
+                    type: string
+                    enum:
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                responseCodeType:
+                    type: string
+                bankResponseCode:
+                    type: string
+                bankResponseMessage:
+                    type: string
+                allowedActions:
+                    type: array
+                    items:
+                        type: string
+                transactionReference:
+                    type: integer
+                    format: int64
+                orderId:
+                    type: integer
+                    format: int64
+                paymentTypeEnum:
+                    type: string
+                    enum:
+                    - CARD
+                    - WALLET
+                    - TOKEN
+                walletDataDTO:
+                    $ref: '#/components/schemas/WalletDataDTO'
+                bankName:
+                    type: string
+                refundBalancedAmount:
+                    type: number
+                isFraudTransaction:
+                    type: boolean
+                clientFraudRulesTransaction:
+                    $ref: '#/components/schemas/ClientFraudRulesTransactionDTO'
+                chargebackData:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ResultChargebackDataDTO'
+                cardExpiryMonth:
+                    type: string
+                cardExpiryYear:
+                    type: string
+                tokenDTO:
+                    $ref: '#/components/schemas/TokenDTO'
+                threeDsTransaction:
+                    type: boolean
+                smartRoutingTransaction:
+                    type: boolean
+                isPartialRefund:
+                    type: boolean
+                isPartialRefundAllowed:
+                    type: boolean
+        TransactionShortOutputDTO:
+            type: object
+            properties:
+                createdDate:
+                    type: string
+                    format: date-time
+                transactionType:
+                    type: string
+                    enum:
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                amount:
+                    type: number
+                    format: double
+                status:
+                    type: string
+                settlementStatus:
+                    type: string
+                transactionId:
+                    type: integer
+                    format: int64
+                currency:
+                    type: string
+                authCode:
+                    type: string
+                responseCode:
+                    type: string
+                responseMessage:
+                    type: string
+                responseCodeType:
+                    type: string
+                bankTransactionId:
+                    type: string
+                bankResponseCode:
+                    type: string
+                bankResponseMessage:
+                    type: string
+                allowedActions:
+                    type: array
+                    items:
+                        type: string
+                transactionReference:
+                    type: integer
+                    format: int64
+                threeDomainsSecureData:
+                    $ref: '#/components/schemas/ThreeDomainsSecureDTO'
+                smartRoutingData:
+                    $ref: '#/components/schemas/SmartRoutingDTO'
+                sourceOfTransaction:
+                    type: string
+                    enum:
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                    - ENABLE_DYNAMIC_DESCRIPTOR
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                billingDetails:
+                    $ref: '#/components/schemas/BillingAddressDTO'
+                shippingDetails:
+                    $ref: '#/components/schemas/ShippingAddressDTO'
+                tokenDTO:
+                    $ref: '#/components/schemas/TokenDTO'
+                threeDsTransaction:
+                    type: boolean
+                smartRoutingTransaction:
+                    type: boolean
+        WalletDataDTO:
+            type: object
+            properties:
+                mappingId:
+                    type: integer
+                    format: int64
+                transactionId:
+                    type: integer
+                    format: int64
+                walletType:
+                    type: string
+                pan:
+                    type: string
+                panType:
+                    type: string
+                authMethod:
+                    type: string
+                eci:
+                    type: string
+                cryptogram:
+                    type: string
+                cardSummary:
+                    type: string
+                service:
+                    type: string
+                createdDatetime:
+                    type: string
+                    format: date-time
+        SearchFilterDTO:
+            type: object
+            properties:
+                fromDateTime:
+                    type: string
+                    format: date-time
+                toDateTime:
+                    type: string
+                    format: date-time
+                emailAddress:
+                    type: string
+                firstName:
+                    type: string
+                lastName:
+                    type: string
+                ccFirstSix:
+                    type: string
+                ccLastFour:
+                    type: string
+                orderId:
+                    type: integer
+                    format: int64
+                transactionId:
+                    type: integer
+                    format: int64
+                transactionReferenceId:
+                    type: integer
+                    format: int64
+                orderStatus:
+                    type: string
+                transactionType:
+                    type: string
+                    enum:
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                transactionStatus:
+                    type: string
+                midId:
+                    type: integer
+                    format: int64
+                siteId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                clientOrderId:
+                    type: string
+                clientId:
+                    type: integer
+                    format: int64
+                status:
+                    type: string
+                cardType:
+                    type: string
+                currency:
+                    type: string
+                countryCode:
+                    type: string
+                bin:
+                    type: string
+                descriptor:
+                    type: string
+                includeOnlySettled:
+                    type: boolean
+                includeAllAuthorizations:
+                    type: boolean
+                includeReorders:
+                    type: boolean
+                reportIncrement:
+                    type: string
+                    enum:
+                    - DAILY
+                    - MONTHLY
+                    - QUARTERLY
+                    - YEARLY
+                clientName:
+                    type: string
+                merchantName:
+                    type: string
+                includeAllStatuses:
+                    type: boolean
+                minAmount:
+                    type: number
+                maxAmount:
+                    type: number
+                bankId:
+                    type: integer
+                    format: int64
+                additionalParameters:
+                    type: string
+                correlationId:
+                    type: string
+                paymentType:
+                    type: string
+                    enum:
+                    - CARD
+                    - WALLET
+                    - TOKEN
+                walletType:
+                    type: string
+                    enum:
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                paymentStatus:
+                    type: string
+                withThreeDs:
+                    type: boolean
+                threeDsProviderId:
+                    type: integer
+                    format: int64
+                serviceName:
+                    type: string
+                siteName:
+                    type: string
+                transactionTypes:
+                    type: array
+                    items:
+                        type: string
+                        enum:
+                        - AUTHORIZATION
+                        - CAPTURE
+                        - SALE
+                        - REFUND
+                        - CANCEL
+                        - REBILL
+                        - INQUIRY
+                isEmptyList:
+                    type: boolean
+                bankAuthCode:
+                    type: string
+                bankTransactionId:
+                    type: string
+                isChargebackOnly:
+                    type: boolean
+                isFraudOnly:
+                    type: boolean
+                cbTransactionType:
+                    type: string
+                cbTransactionTypeEnum:
+                    type: string
+                    enum:
+                    - ETHOCA
+                    - RDR
+                    - VERIFY
+                    - TC40
+                    - INFORM
+                    - FRAUD
+                    - CHARGEBACK
+                maxLimit:
+                    type: integer
+                    format: int32
+                resellerId:
+                    type: integer
+                    format: int64
+                tsysTransId:
+                    type: string
+        PageResultOrderDTO:
+            type: object
+            properties:
+                totalPages:
+                    type: integer
+                    format: int32
+                totalElements:
+                    type: integer
+                    format: int64
+                pageable:
+                    $ref: '#/components/schemas/PageableObject'
+                numberOfElements:
+                    type: integer
+                    format: int32
+                size:
+                    type: integer
+                    format: int32
+                content:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ResultOrderDTO'
+                number:
+                    type: integer
+                    format: int32
+                sort:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/SortObject'
+                first:
+                    type: boolean
+                last:
+                    type: boolean
+                empty:
+                    type: boolean
+        PageableObject:
+            type: object
+            properties:
+                paged:
+                    type: boolean
+                unpaged:
+                    type: boolean
+                pageNumber:
+                    type: integer
+                    format: int32
+                pageSize:
+                    type: integer
+                    format: int32
+                offset:
+                    type: integer
+                    format: int64
+                sort:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/SortObject'
+        ResultOrderDTO:
+            type: object
+            properties:
+                sourceOfTransaction:
+                    type: string
+                    enum:
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                    - ENABLE_DYNAMIC_DESCRIPTOR
+                id:
+                    type: integer
+                    format: int64
+                amount:
+                    type: string
+                createdDate:
+                    type: string
+                    format: date-time
+                status:
+                    type: string
+                accountName:
+                    type: string
+                customerEmail:
+                    type: string
+                currency:
+                    type: string
+                bankName:
+                    type: string
+                hppOrderStatus:
+                    type: string
+                clientOrderId:
+                    type: string
+                traceId:
+                    type: string
+                paymentType:
+                    type: string
+                    enum:
+                    - CARD
+                    - WALLET
+                    - TOKEN
+                walletType:
+                    type: string
+                    enum:
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                walletData:
+                    type: string
+        SortObject:
+            type: object
+            properties:
+                direction:
+                    type: string
+                nullHandling:
+                    type: string
+                ascending:
+                    type: boolean
+                property:
+                    type: string
+                ignoreCase:
+                    type: boolean
+        OrderOutputDTO:
+            type: object
+            properties:
+                createdDate:
+                    type: string
+                    format: date-time
+                status:
+                    type: string
+                settlementStatus:
+                    type: string
+                issuer:
+                    type: string
+                cardType:
+                    type: string
+                issuerCountry:
+                    type: string
+                cardholderName:
+                    type: string
+                netvalveID:
+                    type: string
+                clientOrderId:
+                    type: string
+                customerEmail:
+                    type: string
+                cardNumber:
+                    type: string
+                brand:
+                    type: string
+                userID:
+                    type: integer
+                    format: int64
+                paymentMethod:
+                    type: string
+                paymentType:
+                    type: string
+                ipAddress:
+                    type: string
+                responseCode:
+                    type: string
+                accountName:
+                    type: string
+                descriptor:
+                    type: string
+                authCode:
+                    type: string
+                bankTransactionId:
+                    type: string
+                responseMessage:
+                    type: string
+                transactions:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TransactionShortOutputDTO'
+                currency:
+                    type: string
+                avsData:
+                    $ref: '#/components/schemas/AVSData'
+                cvvVerificationData:
+                    $ref: '#/components/schemas/CVVVerificationData'
+                name:
+                    type: string
+                firstName:
+                    type: string
+                lastName:
+                    type: string
+                ip:
+                    type: string
+                email:
+                    type: string
+                address:
+                    type: string
+                phone:
+                    type: string
+                city:
+                    type: string
+                state:
+                    type: string
+                countryCode:
+                    type: string
+                zipCode:
+                    type: string
+                successUrl:
+                    type: string
+                cancelUrl:
+                    type: string
+                failedUrl:
+                    type: string
+                pendingUrl:
+                    type: string
+                threeDomainsSecureData:
+                    $ref: '#/components/schemas/ThreeDomainsSecureDTO'
+                smartRouting:
+                    $ref: '#/components/schemas/SmartRoutingDTO'
+                sourceOfTransaction:
+                    type: string
+                    enum:
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                    - ENABLE_DYNAMIC_DESCRIPTOR
+                billingDetails:
+                    $ref: '#/components/schemas/BillingAddressDTO'
+                shippingDetails:
+                    $ref: '#/components/schemas/ShippingAddressDTO'
+                transactionReferencedList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TransactionShortOutputDTO'
+                transactionType:
+                    type: string
+                    enum:
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                responseCodeType:
+                    type: string
+                bankResponseCode:
+                    type: string
+                bankResponseMessage:
+                    type: string
+                allowedActions:
+                    type: array
+                    items:
+                        type: string
+                transactionReference:
+                    type: integer
+                    format: int64
+                orderId:
+                    type: integer
+                    format: int64
+                paymentTypeEnum:
+                    type: string
+                    enum:
+                    - CARD
+                    - WALLET
+                    - TOKEN
+                walletDataDTO:
+                    $ref: '#/components/schemas/WalletDataDTO'
+                bankName:
+                    type: string
+                refundBalancedAmount:
+                    type: number
+                isFraudTransaction:
+                    type: boolean
+                clientFraudRulesTransaction:
+                    $ref: '#/components/schemas/ClientFraudRulesTransactionDTO'
+                chargebackData:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ResultChargebackDataDTO'
+                cardExpiryMonth:
+                    type: string
+                cardExpiryYear:
+                    type: string
+                tokenDTO:
+                    $ref: '#/components/schemas/TokenDTO'
+                amountAndCurrency:
+                    type: string
+                orderAmount:
+                    type: number
+                lastUpdatedDate:
+                    type: string
+                    format: date-time
+                hppOrderStatus:
+                    type: string
+                orderDesc:
+                    type: string
+                additionalParameters:
+                    type: object
+                    additionalProperties:
+                        type: string
+                threeDsTransaction:
+                    type: boolean
+                smartRoutingTransaction:
+                    type: boolean
+                isPartialRefund:
+                    type: boolean
+                isPartialRefundAllowed:
+                    type: boolean
+        HostedPaymentFieldsResponseDTO:
+            type: object
+            properties:
+                traceID:
+                    type: string
+                responseTimestamp:
+                    type: string
+                    format: date-time
+                responseCode:
+                    type: string
+                responseMessage:
+                    type: string
+                netvalveScriptSrc:
+                    type: string
+                version:
+                    type: string
+                integrity:
+                    type: string
+                paymentToken:
+                    type: string
+                jwtToken:
+                    type: string
+        PageResultTransactionDTO:
+            type: object
+            properties:
+                totalPages:
+                    type: integer
+                    format: int32
+                totalElements:
+                    type: integer
+                    format: int64
+                pageable:
+                    $ref: '#/components/schemas/PageableObject'
+                numberOfElements:
+                    type: integer
+                    format: int32
+                size:
+                    type: integer
+                    format: int32
+                content:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ResultTransactionDTO'
+                number:
+                    type: integer
+                    format: int32
+                sort:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/SortObject'
+                first:
+                    type: boolean
+                last:
+                    type: boolean
+                empty:
+                    type: boolean
+        ResultTransactionDTO:
+            type: object
+            properties:
+                sourceOfTransaction:
+                    type: string
+                    enum:
+                    - HPP
+                    - API
+                    - API_3DS
+                    - HPP_3DS
+                    - RETRY_WITH_HPP
+                    - SMART_ROUTING
+                    - RETRY_WITH_SMART_ROUTING
+                    - SERVER_TO_SERVER
+                    - RETRY_WITH_SERVER_TO_SERVER
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                    - HPP_3DS_CARDS
+                    - HPP_3DS_APPLE_PAY
+                    - HPP_3DS_GOOGLE_PAY
+                    - HPP_3DS_SAMSUNG_PAY
+                    - HPP_APPLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_APPLE_PAY_CONFIG_MID_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_NETVALVE_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_CLIENT_LEVEL
+                    - HPP_GOOGLE_PAY_CONFIG_MID_LEVEL
+                    - GATEWAY_TOKEN_SAVING
+                    - GATEWAY_TOKEN_PROCESSING
+                    - NETWORK_TOKEN_SAVING
+                    - NETWORK_TOKEN_PROCESSING
+                    - HOSTED_PAYMENT_FIELDS
+                    - ACCOUNT_UPDATER
+                    - DISABLE_BLACKLIST
+                    - ENABLE_DYNAMIC_DESCRIPTOR
+                id:
+                    type: integer
+                    format: int64
+                amount:
+                    type: number
+                currency:
+                    type: string
+                orderId:
+                    type: string
+                clientOrderId:
+                    type: string
+                transactionType:
+                    type: string
+                    enum:
+                    - AUTHORIZATION
+                    - CAPTURE
+                    - SALE
+                    - REFUND
+                    - CANCEL
+                    - REBILL
+                    - INQUIRY
+                transactionReference:
+                    type: integer
+                    format: int64
+                datetime:
+                    type: string
+                    format: date-time
+                accountName:
+                    type: string
+                status:
+                    type: string
+                customerEmail:
+                    type: string
+                responseCode:
+                    type: string
+                responseMessage:
+                    type: string
+                responseCodeType:
+                    type: string
+                bankResponseCode:
+                    type: string
+                bankResponseMessage:
+                    type: string
+                bankName:
+                    type: string
+                bankTransactionId:
+                    type: string
+                authCode:
+                    type: string
+                smartRouting:
+                    $ref: '#/components/schemas/SmartRoutingDTO'
+                traceId:
+                    type: string
+                billingDetails:
+                    $ref: '#/components/schemas/BillingAddressDTO'
+                shippingDetails:
+                    $ref: '#/components/schemas/ShippingAddressDTO'
+                cardNumber:
+                    type: string
+                cardType:
+                    type: string
+                paymentType:
+                    type: string
+                    enum:
+                    - CARD
+                    - WALLET
+                    - TOKEN
+                walletType:
+                    type: string
+                    enum:
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                walletData:
+                    type: string
+                settlementStatus:
+                    type: string
+                tokenDTO:
+                    $ref: '#/components/schemas/TokenDTO'
+                chargebackData:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ResultChargebackDataDTO'
+                chargeBackReceived:
+                    type: boolean
+        HppInitializeSessionRequestDTO:
+            type: object
+            properties:
+                domainName:
+                    type: string
+        HppInitializeSessionResponseDTO:
+            type: object
+            properties:
+                status:
+                    type: string
+                data:
+                    type: object
+        HppBrowserInfoDTO:
+            type: object
+            properties:
+                userAgent:
+                    type: string
+                browserHeader:
+                    type: string
+                browserLanguage:
+                    type: string
+                browserJavaEnabled:
+                    type: boolean
+                browserColorDepth:
+                    type: integer
+                    format: int32
+                browserScreenHeight:
+                    type: integer
+                    format: int32
+                browserScreenWidth:
+                    type: integer
+                    format: int32
+                browserTimeZone:
+                    type: integer
+                    format: int32
+                browserIp:
+                    type: string
+        HppCardDetailsDTO:
+            type: object
+            properties:
+                cardNumber:
+                    maxLength: 40
+                    minLength: 0
+                    type: string
+                cardSecurityCode:
+                    type: string
+                cardHolderName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                cardExpireMonth:
+                    pattern: ^(0[1-9]|1[0-2])$
+                    type: string
+                cardExpireYear:
+                    maxLength: 4
+                    minLength: 4
+                    type: string
+        HppCustomerDetailsDTO:
+            type: object
+            properties:
+                customerIp:
+                    type: string
+                customerEmail:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerFirstName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerLastName:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerAddress:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+                customerCity:
+                    maxLength: 128
+                    minLength: 0
+                    type: string
+                customerState:
+                    maxLength: 30
+                    minLength: 0
+                    type: string
+                customerCountryCode:
+                    maxLength: 2
+                    minLength: 2
+                    type: string
+                customerPhone:
+                    maxLength: 20
+                    minLength: 0
+                    type: string
+        HppTransactionInputFieldsDTO:
+            required:
+            - paymentType
+            type: object
+            properties:
+                paymentType:
+                    type: string
+                    enum:
+                    - CARD
+                    - WALLET
+                    - TOKEN
+                walletType:
+                    type: string
+                    enum:
+                    - APPLE_PAY
+                    - GOOGLE_PAY
+                    - SAMSUNG_PAY
+                applePaySSL:
+                    $ref: '#/components/schemas/ApplePaySSLDTO'
+                googlePaySSL:
+                    $ref: '#/components/schemas/GooglePaySSLDTO'
+                samsungPaySSL:
+                    $ref: '#/components/schemas/SamsungPaySSLDTO'
+                tokenizedDTO:
+                    $ref: '#/components/schemas/TokenizedDTO'
+                cardDetails:
+                    $ref: '#/components/schemas/HppCardDetailsDTO'
+                customerDetails:
+                    $ref: '#/components/schemas/HppCustomerDetailsDTO'
+                billingDetails:
+                    $ref: '#/components/schemas/BillingAddressDTO'
+                shippingDetails:
+                    $ref: '#/components/schemas/ShippingAddressDTO'
+                isBillingAndShippingDetailsSame:
+                    type: boolean
+                dfReferenceId:
+                    type: string
+                transID:
+                    type: string
+                orderId:
+                    type: integer
+                    format: int64
+                threeDSTransactionType:
+                    type: string
+                    enum:
+                    - INITIALIZATION_3DS
+                    - AUTHENTICATION_3DS
+                    - RESULT_3DS
+                    - GET_INFO_3DS
+                browserData:
+                    $ref: '#/components/schemas/HppBrowserInfoDTO'
+                customerZipCode:
+                    maxLength: 10
+                    minLength: 0
+                    type: string
+        HppOrderInputFieldsDTO:
+            required:
+            - amount
+            - cancelUrl
+            - currency
+            - failedUrl
+            - successUrl
+            type: object
+            properties:
+                mode:
+                    type: string
+                    enum:
+                    - SALE
+                    - AUTHORIZATION
+                amount:
+                    type: number
+                currency:
+                    type: string
+                midId:
+                    type: integer
+                    format: int64
+                netvalveMidId:
+                    type: string
+                siteId:
+                    type: string
+                clientOrderId:
+                    maxLength: 100
+                    minLength: 0
+                    type: string
+                orderDesc:
+                    type: string
+                successUrl:
+                    type: string
+                cancelUrl:
+                    type: string
+                failedUrl:
+                    type: string
+                pendingUrl:
+                    type: string
+                slimMode:
+                    type: boolean
+                isBillingAndShippingDetailsSame:
+                    type: boolean
+                customerDetails:
+                    $ref: '#/components/schemas/HppCustomerDetailsDTO'
+                billingDetails:
+                    $ref: '#/components/schemas/BillingAddressDTO'
+                shippingDetails:
+                    $ref: '#/components/schemas/ShippingAddressDTO'
+                additionalParameters:
+                    type: object
+                    additionalProperties:
+                        type: string
+        PaymentPageLayoutDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                clientId:
+                    type: integer
+                    format: int64
+                siteId:
+                    type: integer
+                    format: int64
+                midId:
+                    type: integer
+                    format: int64
+                logoId:
+                    type: string
+                title:
+                    type: string
+                bgColor:
+                    type: string
+                cssId:
+                    type: string
+                confirmationMsg:
+                    type: string
+                payButtonText:
+                    type: string
+                collectBillingInfo:
+                    type: boolean
+                collectShippingInfo:
+                    type: boolean
+                collectCustomerInfo:
+                    type: boolean
+                collectZipCode:
+                    type: boolean
+                allowedPaymentOptions:
+                    type: array
+                    items:
+                        type: string
+                termsAndConditions:
+                    $ref: '#/components/schemas/TermsAndConditionsDTO'
+                displayFooterInfo:
+                    type: boolean
+                footerFields:
+                    type: object
+                    additionalProperties:
+                        type: string
+                displayDescriptorInfo:
+                    type: boolean
+                merchantDescriptor:
+                    type: string
+        TermsAndConditionsDTO:
+            type: object
+            properties:
+                checkboxRequired:
+                    type: boolean
+                termsAndConditionsLabel:
+                    type: string
+                type:
+                    type: string
+                    enum:
+                    - URL
+                    - TEXT
+                url:
+                    type: string
+                htmlFileId:
+                    type: string
+        HppOrderDetailsDTO:
+            type: object
+            properties:
+                clientOrderId:
+                    type: string
+                orderDesc:
+                    type: string
+                merchantName:
+                    type: string
+                amount:
+                    type: number
+                currency:
+                    type: string
+                netvalveMidId:
+                    type: string
+                timeLimit:
+                    type: integer
+                    format: int64
+                expiryDate:
+                    type: string
+                    format: date-time
+                transactions:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TransactionShortOutputDTO'
+                additionalParameters:
+                    type: object
+                    additionalProperties:
+                        type: string
+                siteId:
+                    type: string
+                midId:
+                    type: integer
+                    format: int64
+        HppOrderOutputFieldsDTO:
+            type: object
+            properties:
+                traceID:
+                    type: string
+                responseTimestamp:
+                    type: string
+                    format: date-time
+                orderId:
+                    type: integer
+                    format: int64
+                transactionID:
+                    type: integer
+                    format: int64
+                responseCode:
+                    type: string
+                responseMessage:
+                    type: string
+                orderState:
+                    type: string
+                    enum:
+                    - CREATED
+                    - READY_TO_PAY
+                    - PENDING
+                    - PAID
+                    - DECLINED
+                    - EXPIRED
+                    - AWAIT_3DS
+                csrfToken:
+                    type: string
+                orderDetails:
+                    $ref: '#/components/schemas/HppOrderDetailsDTO'
+                customerDetails:
+                    $ref: '#/components/schemas/HppCustomerDetailsDTO'
+                billingDetails:
+                    $ref: '#/components/schemas/BillingAddressDTO'
+                shippingDetails:
+                    $ref: '#/components/schemas/ShippingAddressDTO'
+                collectBillingInfo:
+                    type: boolean
+                collectShippingInfo:
+                    type: boolean
+                collectCustomerInfo:
+                    type: boolean
+                collectZipCode:
+                    type: boolean
+                isBillingAndShippingDetailsSame:
+                    type: boolean
+                successUrl:
+                    type: string
+                cancelUrl:
+                    type: string
+                failedUrl:
+                    type: string
+                pendingUrl:
+                    type: string
+                theme:
+                    type: integer
+                    format: int64
+                isIFrameSupported:
+                    type: boolean
+                siteId:
+                    type: string
+                paymentPageLayout:
+                    $ref: '#/components/schemas/PaymentPageLayoutDTO'
