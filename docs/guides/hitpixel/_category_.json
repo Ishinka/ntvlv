@@ -1,10 +1,9 @@
 {
-  "label": "Hitpixel NetValve Payment gateway API Integration",
+  "label": "Hitpixel NetValve Payment Gateway",
   "position": 2,
   "collapsed": true,
-  "description": "Integration steps for NetValve Payment Gateway API.",
+  "description": "NetValve Payment Gateway APIs.",
   "link": {
-    "type":"doc", 
-    "id":"hitpixel"
+    "type": "generated-index",
   },
 }

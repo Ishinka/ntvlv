@@ -12,7 +12,7 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-family: 'Lato', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight:400;
 }
 
@@ -31,14 +31,15 @@ body {
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #003c47;
-  --ifm-color-primary-dark: #003640;
-  --ifm-color-primary-darker: #00333c;
-  --ifm-color-primary-darkest: #002a32;
-  --ifm-color-primary-light: #00424e;
-  --ifm-color-primary-lighter: #004552;
-  --ifm-color-primary-lightest: #004e5c;
+  --ifm-color-primary: #006578;
+  --ifm-color-primary-dark: #005b6c;
+  --ifm-color-primary-darker: #005666;
+  --ifm-color-primary-darkest: #004754;
+  --ifm-color-primary-light: #006f84;
+  --ifm-color-primary-lighter: #00748a;
+  --ifm-color-primary-lightest: #00839c;
   --ifm-color-secondary:#1483a8;
+  --ifm-menu-color-active:var(--ifm-color-secondary);
   --docusaurus-details-decoration-color:#1483a8 !important;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-code-font-size: 95%;
@@ -109,14 +110,17 @@ nav.navbar {
   .docSidebarContainer_YfHR, aside.[class^="docSidebarContainer"], aside, [class^="docSidebarContainer"] {border-right:none !important;}
   .docItemCol_VOVn { padding-left: 40px !important; }
 }
-aside [class*="search-wrapper"] { min-width:200px;position: sticky; margin-top: 50px; width: 72% !important;}
+aside [class*="search-wrapper"] { min-width:250px;position: sticky; margin-top: 50px; margin-left:20px;width: 72% !important;}
 
+/* Headings */
 h1 {font-size:42px; font-weight:700;}
 h2 {font-size:32px;}
 h3 {font-size:24px;}
 h4 {font-size:20px;}
 
+/* Breadcrumbs */
 .breadcrumbs__link {background-color:transparent !important; text-transform: uppercase; font-weight:600;}
+
 /* custom code blocks background */
 pre code {background-color: #fafafa;}
 [data-theme='dark'] pre code {background-color: #0a2540;}
@@ -125,16 +129,20 @@ pre code {background-color: #fafafa;}
 /* hide external links icon */
 .navbar [class^="iconExternalLink"] {display:none;}
 
+/* no wrap class for some table cells to not break the text */
 .nwrp {white-space:nowrap;}
 
+/* more space above images in documents */
+[class^="docItemContainer"] p img {padding-top:20px;}
+
 /*global links in docs */
-p a {color:var(--ifm-color-primary);text-decoration:underline !important;}
+p a {color:var(--ifm-color-secondary); text-decoration:underline !important;}
 p a:hover {color:var(--ifm-color-primary-darkest);}
 
-/*codeblock buttons*/
-.buttonGroup_M5ko button {color:var(--ifm-color-primary); border-color:var(--ifm-color-primary);}
+/* Sidebar */
 
-
+[class^="sidebarViewport"] {padding-bottom:30px; padding-top:42px;}
+[class^="sidebarViewport"] [class^="sidebar"] {padding-top:20px !important;}
 
 /* Search */
 .navbar__search-input {border-radius:5px;border:1px solid #e7e7e7;}
@@ -161,29 +169,15 @@ mark {color:var(--ifm-color-primary); background-color:transparent; font-weight:
 
 }
 
-/* Sidebar */
-ul[class*="sidebar"] a {font-size:16px;}
-ul[class*="sidebar"] li div {background-color:transparent;}
-li.cat-title > div a {font-size: 14px; text-transform: uppercase; color:var(--ifm-font-color-base);font-weight:600;}
-li.cat-title > div > a:after {display:none;} 
-li.cat-title > div  {margin-top:20px;}
-li.cat-title > div button {display:none;}
-[class*="level-1"]>ul {padding-left:0px !important;}
-ul[class*="sidebar"] [class*="active"] {background-color:transparent;}
-[data-theme='dark'] ul[class*="sidebar"] [class*="active"]:hover {background-color:#132437;}
-ul[class*="sidebar"] [class*="active"]:hover {background-color:#e6edfb;}
-li[class*="level-3"] {border-left:1px solid var(--border-color-hover); margin-top:-3px; margin-bottom:-3px; padding-top:3px; padding-bottom:3px;}
-li[class*="level-3"] a[class*="active"] {border-color:var(--ifm-color-primary);}
-li[class*="level-3"]:hover {border-color:var(--ifm-color-primary);}
-.menu__caret:before {
-  background: url("/img/chevron-up-n.svg") center center no-repeat; background-size:12px;
+/*codeblock buttons*/
+.buttonGroup_M5ko button {color:var(--ifm-color-primary); border-color:var(--ifm-color-primary);}
+
+/* Tables */
+table thead {
+    background-color: #afcad4 !important;
 }
-[class^="sidebarViewport"] {padding-bottom:30px; padding-top:42px;/* padding-top: 80px; used for the searchbar if present in the sidebar*/}
-[class^="sidebarViewport"] [class^="sidebar"] {padding-top:20px !important;}
 
-
-/*tables*/
- table thead {
+[data-theme='dark'] table thead {
     background-color: #0a2540 !important;
 }
 
@@ -233,6 +227,8 @@ a.card:hover h2 {color:var(--ifm-color-primary);}
     background-image: linear-gradient(180deg, #1483a8, rgba(156, 215, 247, 0.1)) !important;
     -webkit-transition: all 400ms ease;
     transition: all 400ms ease;
+        max-width:300px;
+
 }
 
 .card {
@@ -278,7 +274,9 @@ a.card:hover h2 {color:var(--ifm-color-primary);}
 
 /*Redocusaurus styles*/
 
-/*.redocusaurus .menu-content {position:fixed !important;}*/
+.redocusaurus li, .ffByKO,.loUffO, .jBhhMS, .AAMFK, .jCDqjU, .cmtvuI, .ljdTKq, .lkUQit, .duQWOb, .ejcEzX {font-size:15px !important; padding: 5.7px 11px !important; border-radius:.25rem !important;}
+
+.scrollbar-container {padding-right:10px !important;}
 
 .ecAFBR, .jjBafN, .ggWVOq {background-color: #0a2540 !important;}
 .iuiJbL {background-color: transparent !important;}

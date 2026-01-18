@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
-description: The integration steps for NetValve Payment Gateway API. 
+sidebar_label: API Integration
+description: Integration steps for NetValve Payment Gateway API. 
 id: hitpixel
 ---
 
@@ -60,8 +61,6 @@ For any reason, if you are not able to get a valid response or transaction statu
 
 For detailed information on the request and response structure for the aforementioned APIs, please refer to our [Swagger API](/api) documentation.
 
-### API error codes
+### API Error Codes
 
-Please refer to the document below for a list of API response codes and descriptions.
-
-<DocCardList />
+Please refer to [this document](errorcodes.md) for a list of all API response codes and their description.
