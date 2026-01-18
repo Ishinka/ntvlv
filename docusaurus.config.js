@@ -78,13 +78,14 @@ const config = {
           {
            // spec: 'https://redocly.github.io/redoc/openapi.yaml',
             spec: './combined.yaml',
-            route: 'docs/api/',
+            route: '/api/',
           },
         ],
         // Theme Options for modifying how redoc renders theme
         theme: {
           // Change with your site colors
           primaryColor: '#1483a8',
+          primaryColorDark: '#4bb7e4',
         },
       },
     ], 
@@ -120,7 +121,7 @@ const config = {
             position: 'left',
             label: 'Guides',
           },
-          {to: '/docs/api', label: 'NetValve API', position: 'left'},
+          {to: '/api', label: 'NetValve API', position: 'left'},
           {
             type: 'search',
             position: 'left',
@@ -172,8 +173,6 @@ const config = {
             ],
           },
         ],
-      //},
-      //  ],
       //  copyright: `Copyright © ${new Date().getFullYear()} NetValve Inc. All Rights Reserved.`,
       },
       prism: {

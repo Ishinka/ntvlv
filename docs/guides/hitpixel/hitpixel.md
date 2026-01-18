@@ -58,7 +58,7 @@ For any reason, if you are not able to get a valid response or transaction statu
 }
 ```
 
-For detailed information on the request and response structure for the aforementioned APIs, please refer to our [Swagger API](/docs/api) documentation.
+For detailed information on the request and response structure for the aforementioned APIs, please refer to our [Swagger API](/api) documentation.
 
 ### API error codes
 

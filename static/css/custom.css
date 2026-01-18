@@ -182,6 +182,11 @@ li[class*="level-3"]:hover {border-color:var(--ifm-color-primary);}
 [class^="sidebarViewport"] [class^="sidebar"] {padding-top:20px !important;}
 
 
+/*tables*/
+ table thead {
+    background-color: #0a2540 !important;
+}
+
 /*make left border in TOC for active element*/
 .table-of-contents {font-size: 0.9rem;}
 .table-of-contents li {
@@ -251,19 +256,6 @@ a.card:hover h2 {color:var(--ifm-color-primary);}
 /*Zoom image overlay*/
 .medium-zoom-overlay {background:#06182c !important;}
 
-/* Landing page */
-.homeContainer { 
-  padding:20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.homeContainer h1 {text-align:center; }
-.home-search {
-  margin: 20px 40px;
-}
-
 /* prev/next bottom article navigation - pagination */
 [data-theme='dark'] .pagination-nav__link {border-color:#0a2540;}
 .pagination-nav__link {border-color:#e4e4e4;}
@@ -285,13 +277,23 @@ a.card:hover h2 {color:var(--ifm-color-primary);}
 .pagination-nav__link:hover .pagination-nav__label {color:var(--ifm-color-primary);}
 
 /*Redocusaurus styles*/
-.redocusaurus .redoc-wrap {border-bottom:none !important;}
+
+/*.redocusaurus .menu-content {position:fixed !important;}*/
+
+.ecAFBR, .jjBafN, .ggWVOq {background-color: #0a2540 !important;}
+.iuiJbL {background-color: transparent !important;}
+.redocusaurus .redoc-wrap {border-bottom:none !impqjUortant;}
 .redocusaurus .menu-content {
     background-color: transparent !important;
 }
-.redocusuaurs li label, .redocusuaurs li label.hFnaAI, .redocusuaurs li label.jCDqjU {background-color:#0a2540 !important;}
-.redocusaurus li label:hover {background-color:rgba(100,100,100,.1)}
+.redocusuaurs li label, .redocusuaurs li label.hFnaAI, .redocusuaurs li label.jCDqjU, .jCDqjU, .ejcEzX  {background-color:#06182c !important;}
+.duQWOb {background-color:#06182c !important; color: #4bb7e4 !important;}
+/*.duQWOb.active {background-color:#0a2540 !important;}*/
+.cmtvuI {background-color: #0a2540 !important;}
+.redocusaurus li label:hover {background-color:rgba(100,100,100,.1) !important;}
 .redocusuaurs li label.erWzbJ {color: #4bb7e4 !important;}
+.cHPyGt {border-width:0 !important;}
+
 
 /*Footer*/
 footer {border-top:none; background-color:transparent;}
