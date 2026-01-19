@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 4
 ---
 
-# V2 Add 3DS fields in Sale API (Flows A, B, C)
+# V2 Create Device Data Collection Iframe (Flow C)
