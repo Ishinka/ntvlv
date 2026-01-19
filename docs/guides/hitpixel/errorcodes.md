@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 sidebar_label: API Error Codes
 description: NetValve API Error Codes list 
 id: errorcodes
@@ -9,7 +9,7 @@ id: errorcodes
 
 This page lists down the Response Codes for NetValve. Response codes tell you a lot about what happened during an API request. After sending an API request, you will receive a response containing:
 
-- an [HTTP status code](https://hpitdxb.atlassian.net/wiki/spaces/GW/pages/646709255);
+- an [HTTP status code](http-status-codes.md);
 - a response object containing a “Prefix” and “Code” that indicates the status of the request.
 
 | Application Layer  | Prefix | Description | Example of an Error |

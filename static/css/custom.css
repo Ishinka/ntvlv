@@ -104,7 +104,8 @@ nav.navbar {
 }
 
 [class^="sidebarViewport"] {position:fixed;border-right: none !important;}
-[class^="docItemCol"] {margin-left:40px !important;}
+main .container {padding-left:10px;}
+[class^="generatedIndexPage"] {padding-left:30px;}
 
 @media (min-width: 997px) {
   .docSidebarContainer_YfHR, aside.[class^="docSidebarContainer"], aside, [class^="docSidebarContainer"] {border-right:none !important;}
@@ -251,6 +252,23 @@ a.card:hover h2 {color:var(--ifm-color-primary);}
 
 /*Zoom image overlay*/
 .medium-zoom-overlay {background:#06182c !important;}
+
+
+/* Code Block styling */
+.theme-code-block pre {
+    overflow-y: auto;
+    max-height: 600px !important;
+    font-size: 15px;
+    border-radius:5px;
+    scrollbar-width: thin;
+}
+
+/* Tables */
+table, tr, td, th {border:none !important;}
+th {border-left:1px solid #808080 !important;}
+thead {justify-items:space-between;border:1px solid #808080; border-radius: 5px !important;}
+td {border-right:1px solid #808080 !important;}
+td:last-child {border:none !important;}
 
 /* prev/next bottom article navigation - pagination */
 [data-theme='dark'] .pagination-nav__link {border-color:#0a2540;}

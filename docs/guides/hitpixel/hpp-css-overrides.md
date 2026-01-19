@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 ---
 
-# HPP CSS overrides
+# HPP CSS Overrides
 
 You can override any styling on the HPP page. 
 Here are some selectors you can use to target the DOM nodes.
