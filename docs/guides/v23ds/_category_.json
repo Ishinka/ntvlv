@@ -1,0 +1,9 @@
+{
+  "label": "3DS Standalone V2 APIs",
+  "position": 8,
+  "collapsed": true,
+  "description": "3D Secure standalone v2 APIs.",
+  "link": {
+    "type": "generated-index",
+  },
+}

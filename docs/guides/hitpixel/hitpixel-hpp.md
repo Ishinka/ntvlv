@@ -10,7 +10,7 @@ id: hitpixel-hpp
 This document describes the integration steps for NetValve Payment Gateway HPP API. 
 
 :::info
- Contact the NetValve team to ensure the Hosted Payment Page (HPP) configuration steps have been completed and you have credentials for the HPP API authentication.
+ Contact the NetValve team to ensure the Hosted Payment Page (HPP) configuration steps have been completed and you have credentials for the HPP [API authentication](api-authentication.md).
 :::
 
 ## Flow
@@ -45,9 +45,9 @@ Prerequisites:
 
 - Create Order
 
-API endpoint: [hppApiUrl/hpp/order](/api#tag/Hosted-Payment-Page/operation/createOrder) <br />
-Method: POST<br />
-Request: JSON
+API URL: [hppApiUrl/hpp/order](/api#tag/Hosted-Payment-Page/operation/createOrder) <br />
+HTTP Method: POST<br />
+Request Body: JSON
 
 ```json title="Example Request"
 {

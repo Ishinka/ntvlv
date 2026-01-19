@@ -11,7 +11,7 @@ import DocCardList from '@theme/DocCardList';
 
 This document describes the integration steps for NetValve Payment Gateway API. 
 :::info
-Contact the NetValve team to ensure you have credentials for the API authentication.
+Contact the NetValve team to ensure you have credentials for the [API authentication](api-authentication.md).
 :::
 
 ## Flow
