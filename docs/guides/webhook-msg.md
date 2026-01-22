@@ -9,35 +9,35 @@ NetValve provides real-time webhook information about the status of your request
 
 To setup a webhook, reach out to NetValve team with your webhook URL for configuration.
 
-## Webhook values
+## Webhook Values
 The NetValve transmits the webhook message to the client server in JSON format.
 
-### Event name
+### Event Name
 - Possible event names
 
 | Event | Description | 
 |:----- | :---------- |
 | AUTHORISED| Triggered when a payment has been authorized| 
-| AUTHORISATION_FAILED| Triggered when the authorization process has failed| 
+| AUTHORISATION_FAILED| Triggered when the authorization process has failed.| 
 | PURCHASED| Triggered when the Sale process has succeeded.| 
-| PURCHASE_FAILED| Triggered when Sale process has failed| 
+| PURCHASE_FAILED| Triggered when Sale process has failed.| 
 | CAPTURED| Triggered when an AUTHORISED payment has been CAPTURED, in full.| 
 | CAPTURE_FAILED| Triggered when the CAPTURE process has failed.| 
-| CANCELLATION_FAILED| When APM system, declines or fail for a payment, the event has been triggered| 
-| CANCELLED| Triggered when transaction is cancelled| 
+| CANCELLATION_FAILED| Triggered When the APM system declines or fails for a payment.| 
+| CANCELLED| Triggered when the transaction has been cancelled.| 
 | REFUNDED| Triggered when a CAPTURED payment has subsequently been refunded.| 
 | REFUND_FAILED| Triggered when a REFUND request has failed.| 
-| REBILLED| Triggered when a REBILL transaction is successful| 
-| REBIL_FAILED| Triggered when a REBILL transaction is failed| 
-| AUTHORISATION_PENDING| Triggered when the authorization process has status PENDING| 
-| PURCHASE_PENDING| Triggered when Sale process has has status PENDING| 
-| CAPTURE_PENDING| Triggered when the CAPTURE process has has status PENDING| 
-| REBILL_PENDING| Triggered when a REBILL transaction has status PENDING| 
-| REFUND_PENDING| Triggered when a REFUND request has status PENDING| 
-| CANCELLATION_PENDING| Triggered when a CANCEL request has status PENDING| 
+| REBILLED| Triggered when a REBILL transaction is successful.| 
+| REBIL_FAILED| Triggered when a REBILL transaction has failed. | 
+| AUTHORISATION_PENDING| Triggered when the authorization process has PENDING as status.| 
+| PURCHASE_PENDING| Triggered when the Sale process has PENDING as status. | 
+| CAPTURE_PENDING| Triggered when the CAPTURE process has PENDING as status. | 
+| REBILL_PENDING| Triggered when a REBILL transaction has PENDING as status. | 
+| REFUND_PENDING| Triggered when a REFUND request has PENDING as status. | 
+| CANCELLATION_PENDING| Triggered when a CANCEL request has PENDING as status. | 
 | CHARGEBACK| Triggered when a CHARGEBACK is received. | 
 
-## Webhook response
+## Webhook Response
 
 ### Webhook Request Handling
 
@@ -151,33 +151,34 @@ You might get the same webhook event multiple times. This is normal because NetV
 Even if your server accepts the event, it might not always respond in time (within 5 seconds). If this happens, NetValve will assume the event wasn't handled and send it again later.
 
 ## Delivery Attempts and Retries
-NetValve has two retry mechanisms to retry the messages. The first retry mechanism is the instant retry, it happens when we are processing the message for the first time and if it failed to be delivered it will be instantly retried 3 times. If the message failed to be delivered after the instant retries, the webhook message is going on the scheduled retry mechanism with these intervals:
+NetValve has two retry mechanisms when sending messages. 
+The first retry mechanism is the **instant retry**. It is used when we are processing the message **for the first time**, and if its delivery fails, 3 more attempts will be made instantly. If the delivery still fails after all these attempts, the webhook message is then handled by the **scheduled retry mechanism**. It uses these intervals for delivery attempts:
 
-- 15 minutes
-- 30 minutes
-- 1 hour
-- 2 hours
-- 4 hours
-- 8 hours
-- 16 hours
-- 24 hours
+- 15 minutes;
+- 30 minutes;
+- 1 hour;
+- 2 hours;
+- 4 hours;
+- 8 hours;
+- 16 hours;
+- 24 hours.
 
 ## Suspend/Disable
-Upon failure, a webhook message is retried at progressive intervals of time for 24 hours. If the webhook continues to fail for 24 hours, the webhook will be moved to a suspend state. NetValve has multiple suspend intervals (1 day, 3 days, 5 days, 7 days); this means that after the first suspend state the webhook message will continue retrying delivery after 1, 3, 5, 7 days. If the webhook message fails to be delivered successfully, the callback configuration will be suspended and all the new webhook messages will be **on hold**.
+If the above attempts fail to deliver the webhook message after the first 24 hours, it will be moved to a **suspend** state. NetValve has multiple suspend intervals (1 day, 3 days, 5 days, 7 days); this means that after the first suspend state, the webhook message delivery will still be retried after 1, 3, 5 and 7 days. If after all these attempts the webhook message still remains undelivered, the callback configuration will be suspended and all the new webhook messages will be put **on hold**.
 
-## Order Of Events
-Ideally, you should receive a webhook in the order in which the webhook events occur. However, you may not always receive the webhooks in order. Know more about Order of Webhooks.
+## Events Order
+Ideally, you should receive a webhook in the order in which the webhook events occur. However, you may not always receive the webhooks in this order.
 
 ## Authentication
-There are couple of ways to ensure authentication of the webhook.
+There are a couple of ways to verify the authentication of the webhook.
 
 ### Custom Header / Custom Header Value
 
-- When creating a new webhook, there’s an option to provide authentication header name (<code>Custom Header</code>) and value (<code>Custom Header Value</code>).
-- When the webhook request is sent to provided webhook URL, besides the request body with transaction details, it also includes provided custom header name and value.
+- When creating a new webhook, there is an option to provide authentication header name (<code>Custom Header</code>) and value (<code>Custom Header Value</code>).
+- When the webhook request is sent to a given webhook URL, besides the request body with the transaction details, it also includes the provided custom header **name** and **value**.
 - Based on those 2 parameters, it is possible to verify if the request is coming from a verified server machine.
 
-### IP address restriction
+### IP Address Restriction
 
-- Another mechanism of preventing requests from non-verified server machine would be to whitelist the IPs of those servers.
-- NetValve is capable of providing the list of IPs that could be then verified on webhook receiver side to make sure requests are coming from verified server machine.
+- Another mechanism of preventing requests from non-verified server machines would be to whitelist the IPs of the dedicated servers.
+- NetValve is capable of providing the list of IPs that could be then verified on the webhook receiver side to make sure requests are coming from a verified server machine.
