@@ -262,9 +262,9 @@ See [V2 Flows](v2-flows.md) for a description of this flow.
 
 | Parameter | Type | Required | Description |
 |:-----------|:-----|:-------- |:------------|
-|traceID |String|Yes|Trace Id / Corellation ID  :- Unique id for 3DS Transaction to trace back / inquiry.<br/>e.g. |dbea8561-4990-4582-b370-66ab2696f39a|
-|responseTimestamp|Date|Yes|Date time of response.<br />e.g.  "2023-10-17T08:52:17.845+00:00"|
-|responseCode|String|Yes|Netvalve Response Code <br />e.g. 3DS_1000 SUCESS; 3DS_2000 Failure<br /> More [Error Codes](#error-codes)|
+|traceID |String|Yes|Trace Id / Corellation ID - an unique ID for 3DS Transaction to trace back / inquiry.<br/>e.g. dbea8561-4990-4582-b370-66ab2696f39a|
+|responseTimestamp|Date|Yes| Response date and time.<br />e.g.  "2023-10-17T08:52:17.845+00:00"|
+|responseCode|String|Yes|NetValve Response Code <br />e.g. 3DS_1000 SUCESS; 3DS_2000 Failure<br /> More [Error Codes](#error-codes)|
 |responseMessage|String|Yes|e.g. "Three DS Transaction Successful."|
 |threeDSProviderResponse|String|Optional (present in case of valid request)|TthreeDSProviderResponse JSON Object|
 |midId|Long|Yes|Mid ID|
@@ -274,13 +274,13 @@ See [V2 Flows](v2-flows.md) for a description of this flow.
 
 | Parameter | Type | Required | Description |
 |:-----------|:-----|:-------- |:------------|
-| transID| String| Yes| transID Id  :- Unique 3DS Transaction id <br />e.g. dbea8561-4990-4582-b370-66ab2696f39a| 
+| transID| String| Yes| transID Id - an unique 3DS Transaction ID <br />e.g. dbea8561-4990-4582-b370-66ab2696f39a| 
 | referenceId| String| Yes| Reference Id for 3DS from provider<br />e.g.  "124cf1a9-b211-4f7f-8cf1-a9b2115f7fb0"| 
 | threeDs2TransactionId| String| Yes| 3DS Server Transaction Id<br />e.g. 6bb67882-1562-42c0-ae06-26875c6a62e3| 
 | eci| String| Yes| ECI value from 3DS Provider<br />e.g. Visa. 05; Mastercard. 02.<br />More [ECI Codes](v2-eci-codes.md)| 
 | cavv| String| Yes| CAVV value from 3DS Provider<br />e.g.AJkBAZd0ByiAAAAAJnQHAAAAAAA=| 
 | challengeRequired| Boolean| Optional| true/false| 
-| redirectUrl| String| Optional| Netvalve URL to do Iframe/redirect challenge flow. For more details see the documentation [Step 4: ACS Challenge](v2-acs-challenge.md) and receive the challenge result.| 
+| redirectUrl| String| Optional| NetValve URL to do Iframe/redirect challenge flow. For more details see the documentation [Step 4: ACS Challenge](v2-acs-challenge.md) and receive the challenge result.| 
 | status| String| Yes| "AUTHENTICATED" / “AUTHENTICATED_FAILED“ / “ACS_REQUIRED" / “INITIALIZATION_FAILED“| 
 | errorCode| String| Optional| e.g. 9400| 
 | errorMessage| String| Optional| e.g. “Field 'mid_q' validation error."|

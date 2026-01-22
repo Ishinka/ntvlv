@@ -6,7 +6,7 @@ description: NetValve HTTP Status Codes list
 
 # NetValve HTTP Status Codes
 
-The table below describes the possible HTTP Status Codes that you may receive when sending and API request:
+The table below describes the possible HTTP Status Codes that you may receive when sending and API request.
 
 | Code| Description| 
 |:----|:-----------|

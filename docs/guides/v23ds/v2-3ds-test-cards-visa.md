@@ -28,7 +28,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 1: Successful Frictionless Authentication
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|3DS Version | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001000  | 08 | 2028 | 05 | Yes | SUCCESS | 
@@ -39,7 +39,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 2: Failed Frictionless Authentication
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001018  | 08 | 2028 | 07 | No | ERROR | 
@@ -50,7 +50,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 3: Attempts Stand-In Frictionless Authentication
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001026  | 08 | 2028 | 06 | Yes | SUCCESS | 
@@ -61,7 +61,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 4: Unavailable Frictionless Authentication from the Issuer
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001034  | 08 | 2028 | 07 | No | ERROR | 
@@ -72,7 +72,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 5: Rejected Frictionless Authentication by the Issuer
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001042  | 08 | 2028 | 07 | No | ERROR | 
@@ -83,7 +83,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 6: Authentication Not Available on Lookup
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001059  | 08 | 2028 | 07 | No | ERROR | 
@@ -94,7 +94,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 7: Error on Lookup
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001067  | 08 | 2028 | 07 | No | ERROR | 
@@ -105,7 +105,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 8: Timeout on cmpi_lookup Transaction
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001075  | 08 | 2028 | 07 | No | ERROR | 
@@ -118,7 +118,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 9: Successful Step Up Authentication
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001091  | 08 | 2028 | 05 | Yes | SUCCESS | 
@@ -129,7 +129,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 10: Failed Step Up Authentication
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001109  | 08 | 2028 | 07 | No | ERROR | 
@@ -140,7 +140,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 11: Step Up Authentication is UNovailable
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001117  | 08 | 2028 | 07 | No | ERROR | 
@@ -151,7 +151,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 12: Error On Authentication
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001125  | 08 | 2028 | 07 | No | ERROR | 
@@ -162,7 +162,7 @@ cardSecurityCode: 999/123
 
 ### Test Case 13: Bypassed Authentication
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|			|			|			| || |
 | v2.1.0 | 4000000000001083  | 08 | 2028 | 07 | No | ERROR | 
@@ -173,6 +173,6 @@ cardSecurityCode: 999/123
 
 ### Test Case 14: MethodURL Implementation Check
 
-|Any month in MM format |Future Year in YYYY |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
+|Card Type | Card Number |Card Exp Month |Card Exp Year |ECI |CAVV |Test Case Type|
 |:--------------------- |:-------------------|:--------------|:-------------|:---|:----|:-------------|
 | **Visa** 			|4000100000000000|08|2028|05 |Yes| SUCCESS|
