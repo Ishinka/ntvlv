@@ -1,0 +1,10 @@
+{
+  "label": "Smart Routing",
+  "position": 12,
+  "collapsed": true,
+  "description": "Transaction routing in finance directs financial transactions between entities.",
+  "link": {
+    "type":"doc", 
+    "id":"smartrouting"
+  },
+}
