@@ -6,10 +6,10 @@ sidebar_position: 7
 
 ## API Details 
 
-Mode: Stateless REST API <br />
-API URL: paymentApiUrl/3ds/result <br />
-HTTP Method: POST <br />
-Request Body: JSON
+Mode: Stateless **REST** API <br />
+API URL: paymentApiUrl **/3ds/result** <br />
+HTTP Method: **POST** <br />
+Request Body: **JSON**
 
 ### Request Body
 
@@ -38,7 +38,7 @@ Request Body: JSON
 
 ## API Response in JSON
 
-### **Friction Less Flow (Challenge Not Required)**
+### **Frictionless Flow (Challenge Not Required)**
 
 ```json title="200"
 {

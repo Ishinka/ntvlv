@@ -8,15 +8,15 @@ The initialization call must be sent to start the 3D Secure v2 authentication fl
 
 ## API Details 
 
-Mode: Stateless REST API <br />
-API URL: paymentApiUrl/3ds/v2/initialization <br />
-HTTP Method: POST <br />
-Request Body: JSON
+Mode: Stateless **REST** API <br />
+API URL: paymentApiUrl **/3ds/v2/initialization** <br />
+HTTP Method: **POST** <br />
+Request Body: **JSON**
 
 ### Request Body
 
 ```json title="Example Request"
- {
+{
     "netvalveMidId":{{netvalveMidId}},
     "amount": 43.10,
     "currency": "USD",
@@ -103,7 +103,7 @@ The <code>browserHeader</code> can be the hard coded string above. This will be 
 |:---- |:----------- |
 | 200 | Sucess |
 | 401 | Unauthorised |
-| 404 | Bad request |
+| 404 | Bad Request |
 | 500 | Service Unavailable |
 
 ## Responses for different flows
@@ -114,16 +114,16 @@ The following indicates the response for each of the possible [3DS flows](v2-flo
 
 See [V2 Flows](v2-flows.md) for a description of this flow.
 
-- **Frictionless Flow**
+#### Frictionless Flow
 
 **Frictionless Success Criteria**: the response must contain the data listed below and the client should add those checks.
 
-- "responseCode" = "3DS_1000"
-- "transID" = (Non Null value)
-- "threeDs2TransactionId" = (Non Null value)
-- "eci" = (Non Null value)
-- "cavv" = (Non Null value)
-- "threeDsVersion" = (Non Null value)
+- <code>"responseCode" = "3DS_1000"</code>
+- <code>"transID" = (Non Null value)</code>
+- <code>"threeDs2TransactionId" = (Non Null value)</code>
+- <code>"eci" = (Non Null value)</code>
+- <code>"cavv" = (Non Null value)</code>
+- <code>"threeDsVersion" = (Non Null value)</code>
 
 :::note
 **If the above success criteria match, skip all the next steps and use <code>eci</code>, <code>cavv</code>, <code>threeDs2TransactionId</code>,<code>threeDsVersion</code> in the payment.**
@@ -175,11 +175,11 @@ See [V2 Flows](v2-flows.md) for a description of this flow.
 
 **ACS Success Criteria**: the response must contain the data listed below and the client should add those checks.
 
-- "responseCode" = "3DS_1000"
-- "transID" = (Non Null value)
-- "challengeRequired" = true
-- "redirectUrl" = (Non Null value)
-- "status" = ACS_REQUIRED
+- <code>"responseCode" = "3DS_1000"</code>
+- <code>"transID" = (Non Null value)</code>
+- <code>"challengeRequired" = true</code>
+- <code>"redirectUrl" = (Non Null value)</code>
+- <code>"status" = ACS_REQUIRED</code>
 
 :::note
 **If the above success criteria match, then follow the next step as (step 4) and in sequence for the next.**
@@ -231,10 +231,10 @@ See [V2 Flows](v2-flows.md) for a description of this flow.
 
 **Success Criteria**: the response must contain the data listed below and the client should add those checks.
 
-- "responseCode" = "3DS_1000"
-- "transID" = (Non Null value)
-- "redirectUrl" = (Non Null value)
-- "status" = INITIALIZED
+- <code>"responseCode" = "3DS_1000"</code>
+- <code>"transID" = (Non Null value)</code>
+- <code>"redirectUrl" = (Non Null value)</code>
+- <code>"status" = INITIALIZED</code>
 
 :::note
 **If the above success criteria match, then follow the next step as (step 2) and in sequence of the next.**
@@ -280,7 +280,7 @@ See [V2 Flows](v2-flows.md) for a description of this flow.
 | eci| String| Yes| ECI value from 3DS Provider<br />e.g. Visa. 05; Mastercard. 02.<br />More [ECI Codes](v2-eci-codes.md)| 
 | cavv| String| Yes| CAVV value from 3DS Provider<br />e.g.AJkBAZd0ByiAAAAAJnQHAAAAAAA=| 
 | challengeRequired| Boolean| Optional| true/false| 
-| redirectUrl| String| Optional| NetValve URL to do Iframe/redirect challenge flow. For more details see the documentation [Step 4: ACS Challenge](v2-acs-challenge.md) and receive the challenge result.| 
+| redirectUrl| String| Optional| NetValve URL to do Iframe/redirect challenge flow. For more details see the documentation [V2 ACS Challenge](v2-acs-challenge.md) and receive the challenge result.| 
 | status| String| Yes| "AUTHENTICATED" / “AUTHENTICATED_FAILED“ / “ACS_REQUIRED" / “INITIALIZATION_FAILED“| 
 | errorCode| String| Optional| e.g. 9400| 
 | errorMessage| String| Optional| e.g. “Field 'mid_q' validation error."|

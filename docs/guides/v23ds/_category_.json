@@ -4,6 +4,7 @@
   "collapsed": true,
   "description": "3D Secure standalone v2 APIs.",
   "link": {
-    "type": "generated-index",
+    "type":"doc", 
+    "id":"v23dsstandalone"
   },
 }
