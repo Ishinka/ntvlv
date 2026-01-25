@@ -1,13 +1,13 @@
 ---
-sidebar_position: 40
+sidebar_position: 50
 ---
 
 # Partial Refund
 
-## Partial Refund Support in Netvalve
+## Partial Refund Support in NetValve
 NetValve supports partial refunds to provide flexibility and enhanced customer satisfaction in refund processing. A partial refund allows merchants to return a portion of the transaction amount to the customer instead of the entire payment. 
 
-## Key Features of Partial Refund in Netvalve:
+## Key Features of Partial Refund in NetValve:
 Flexible Refund Amounts: Merchants can specify the exact amount to be refunded, tailored to the situation.
 
 Seamless Integration: The feature integrates smoothly into the existing payment workflows, ensuring no disruption, the merchant can use the same refund API with a new field amount 
@@ -51,7 +51,7 @@ NetValve enables partial refunds only if the Bank supports this functionality. W
 	    "responseCodeType": "SOFT DECLINE"
 	}
 	```
-## API Details (Existing Refund API)
+## API Details ([Existing Refund API](/api#tag/Payment-Service/operation/refundOperation))
 
 API URL: paymentApiUrl **/refund** <br />
 HTTP Method: **POST** <br />
