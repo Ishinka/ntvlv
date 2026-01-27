@@ -12,7 +12,7 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   font-family: 'Lato', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight:400;
 }
 
@@ -43,9 +43,9 @@ body {
   --docusaurus-details-decoration-color:#1483a8 !important;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-code-font-size: 95%;
-  --ifm-footer-padding-vertical: 40px;
+  --ifm-footer-padding-vertical: 10px;
   --ifm-container-width: unset;
-  --ifm-container-width-xl: 1440px;
+  --ifm-container-width-xl: 1600px;
   --ifm-heading-font-family: 'Nunito', sans-serif;
   --ifm-heading-font-weight: 600;
   --ifm-heading-line-height: normal;
@@ -86,8 +86,8 @@ body {
   --ifm-color-info-contrast-background: #053c57;
 }
 
-@media (min-width:1440px) {
-  .navbar__inner, .main-wrapper {width:1440px; max-width:1440px; margin:0 auto; padding-left:32px;padding-right:32px;}
+@media (min-width:1600px) {
+  .navbar__inner, .main-wrapper {width:1600px; max-width:1600px; margin:0 auto; padding-left:32px;padding-right:32px;}
 }
 
 nav.navbar {
@@ -97,7 +97,7 @@ nav.navbar {
   background-repeat: no-repeat;
 }
 
-.navbar__inner {max-width:1440px; margin:auto; height:80px;}
+.navbar__inner {max-width:1600px; margin:auto; height:80px;}
 .navbar__item {
   font-family:'Nunito', sans-serif;
   font-weight:700;

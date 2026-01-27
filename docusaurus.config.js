@@ -176,7 +176,7 @@ const config = {
       //  copyright: `Copyright © ${new Date().getFullYear()} NetValve Inc. All Rights Reserved.`,
       },
       prism: {
-       // additionalLanguages: ['php','java','python','json'],
+        additionalLanguages: ['bash'],
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
