@@ -146,7 +146,7 @@ pre code {background-color: #fafafa;}
 .nwrp {white-space:nowrap;}
 
 /* more space above images in documents */
-[class^="docItemContainer"] p img {padding-top:20px;}
+/*[class^="docItemContainer"] p img {padding-top:20px;}*/
 
 /*global links in docs */
 p a {color:var(--ifm-color-secondary); text-decoration:underline !important;}

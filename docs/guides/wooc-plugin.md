@@ -11,9 +11,9 @@ Your NetValve contact will supply you with the plugin in a ZIP archive.
 1. Navigate to the Plugins page in your WordPress admin panel.
 2. Click the **Add Plugin** button, located at the top of the page; then click the **Upload Plugin** button and select the provided NetValve plugin archive.
 
-![WP - Add Plugin button](img/wp-addplugin.png)
-
-![WP - Upload Plugin button](img/wp-uploadplugin.png)
+<img src="/img/wp-addplugin.png" alt="WP - Add Plugin button" width="300" />
+<br />
+<img src="/img/wp-uploadplugin.png" alt="WP - Upload Plugin button" width="300" />
 
 3. Upload the NetValve plugin file for installation.
 
