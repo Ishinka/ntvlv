@@ -286,6 +286,14 @@ a.card:hover h2 {color:var(--ifm-color-primary);}
 
 /*Redocusaurus styles*/
 
+.redocusaurus .redoc-wrap {
+    border-bottom: none !important;
+}
+
+.redocly-logo, .jWiwlh, .sc-hAQmFh, .kLLEAJ {
+  display: none !important;
+}
+
 .redocusaurus li, .ffByKO,.loUffO, .jBhhMS, .AAMFK, .jCDqjU, .cmtvuI, .ljdTKq, .lkUQit, .duQWOb, .ejcEzX {font-size:15px !important; padding: 5.7px 11px !important; border-radius:.25rem !important;}
 
 .scrollbar-container {padding-right:10px !important;}
