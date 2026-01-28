@@ -18,7 +18,7 @@ Mode: Stateless **REST** API <br />
 API URL: paymentApiUrl **/sale** <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**<br />
-Authentication: uses netvalve client ID, apiKey and basic auth.
+Authentication: uses netvalve client ID, apiKey and basic auth. [See here](/guides/hitpixel/api-authentication).
 
 **Request**
 
