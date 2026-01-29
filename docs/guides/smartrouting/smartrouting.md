@@ -27,9 +27,9 @@ Contact NetValve Admin/Support to get <code>siteId</code> and add that in your c
 To process transactions using smart routing, you need to send the <code>siteId</code> parameter. Do not include the parameters <code>midId</code> or <code>netvalveMidId</code> in the API request. **If either midId or netvalveMidId is included in the request, the transaction will be processed using those parameters, and smart routing will not be utilized.**
 :::
 
-### Sale/Authorization API: added <code>siteId</code> instead of <code>midId/netvalveMidId</code>
+### Sale / Authorization API: added <code>siteId</code> instead of <code>midId/netvalveMidId</code>
 
-API URL: paymentApiUrl **/sale** AND paymentApiUrl **/authorize** <br />
+API URL: [paymentApiUrl **/sale**](/api#tag/Payment-Service/operation/saleOperation) AND [paymentApiUrl **/authorize**](/api#tag/Payment-Service/operation/authorizeOperation) <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**
 
@@ -62,7 +62,7 @@ There is no change in the response JSON received.
 
 ### Hosted payment page to create order API: added <code>siteId</code> instead of <code>midId/netvalveMidId</code>
 
-API URL: hppApiUrl **/hpp/order** <br />
+API URL: [hppApiUrl **/hpp/order**](/api#tag/Hosted-Payment-Page/operation/createOrder) <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**
 
@@ -117,7 +117,7 @@ There is no change in the response JSON received.
 
 1. **3DS initialization**: Added <code>siteId</code> instead of <code>midId/netvalveMidId</code>
 
-API URL: paymentApiUrl **/3ds/initialization** <br />
+API URL: [paymentApiUrl **/3ds/initialization**](/api#tag/Three-DS/operation/initializationOperation) <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**
 
@@ -137,7 +137,7 @@ There is no change in the response JSON received.
 
 2. **3DS authentication**: Removed <code>midId/netvalveMidId</code>
  
-API URL: paymentApiUrl **/3ds/authentication** <br />
+API URL: [paymentApiUrl **/3ds/authentication**](/api#tag/Three-DS/operation/authenticationOperation) <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**
 
@@ -170,7 +170,7 @@ There is no change in the response JSON received.
 
 3. **3DS result**: Removed <code>midId/netvalveMidId</code>
 
-API URL: paymentApiUrl **/3ds/result** <br />
+API URL: [paymentApiUrl **/3ds/result**](/api#tag/Three-DS/operation/resultOperation) <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**
 
