@@ -313,9 +313,10 @@ a.card:hover h2 {color:var(--ifm-color-primary);}
 .cHPyGt {border-width:0 !important;}
 
 /* expanding data div*/
-html[data-theme='dark'] .redocusaurus div[id^='tag'] button+div {
-    background-color: transparent !important;
-}
+/*[data-theme='dark'] .redocusaurus div[id^='tag'] button+div {
+    background-color: #0a2540 ;
+}*/
+
 
 
 /*Footer*/
