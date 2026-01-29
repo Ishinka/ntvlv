@@ -7,7 +7,7 @@ sidebar_position: 7
 ## API Details 
 
 Mode: Stateless **REST** API <br />
-API URL: paymentApiUrl **/3ds/result** <br />
+API URL: [paymentApiUrl **/3ds/result**](/api#tag/Three-DS/operation/resultOperation) <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**
 

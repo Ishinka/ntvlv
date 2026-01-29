@@ -24,22 +24,22 @@ Netvalve Payment Gateway API
 
 ### Transactional APIs
 
-- Authorization transaction
-- Capture / Settlement transaction
-- Sale transaction
-- Refund transaction
-- Rebill / Recurring transaction
-- Cancel / Void transaction
+- [Authorization](/api#tag/Payment-Service/operation/authorizeOperation) transaction
+- [Capture/Settlement](/api#tag/Payment-Service/operation/captureOperation) transaction
+- [Sale](/api#tag/Payment-Service/operation/saleOperation) transaction
+- [Refund](/api#tag/Payment-Service/operation/refundOperation) transaction
+- [Rebill/Recurring](/api#tag/Payment-Service/operation/rebillOperation) transaction
+- [Cancel/Void](/api#tag/Payment-Service/operation/cancelOperation) transaction
 
 ### Enquiry APIs
 
-- Get All Orders
-- Get Order
-- Get All Transactions
-- Get Transaction
-- Get Transaction result (inquiry)
+- [Get All Orders](/api#tag/Payment-Service/operation/exportOrders)
+- [Get Order](/api#tag/Payment-Service/operation/getOrderById)
+- [Get All Transactions](/api#tag/Payment-Service/operation/exportTransactions)
+- [Get Transaction](/api#tag/Payment-Service/operation/getTransactionById)
+- [Get Transaction result (inquiry)](/api#tag/Payment-Service/operation/inquiry)
 
-For any reason, if you are not able to get a valid response or transaction status from the gateway like below, you can call inquiry API for transaction result status.
+For any reason, if you are not able to get a valid response or transaction status from the gateway like below, you can call [Inquiry API](/api#tag/Payment-Service/operation/inquiry) for transaction result status.
 
 ```json title="Example Response"
 {

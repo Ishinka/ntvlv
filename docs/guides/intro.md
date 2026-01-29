@@ -3,6 +3,8 @@ sidebar_position: 1
 slug: /
 ---
 
+import DocCardList from '@theme/DocCardList';
+
 # Welcome
 
 This is the official NetValve Merchant Documentation.

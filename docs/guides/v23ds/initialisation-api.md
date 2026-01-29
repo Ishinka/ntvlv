@@ -9,7 +9,7 @@ The initialization call must be sent to start the 3D Secure v2 authentication fl
 ## API Details 
 
 Mode: Stateless **REST** API <br />
-API URL: paymentApiUrl **/3ds/v2/initialization** <br />
+API URL: [paymentApiUrl **/3ds/v2/initialization**](/api#tag/Three-DS/operation/initAndAuthOperation) <br />
 HTTP Method: **POST** <br />
 Request Body: **JSON**
 
